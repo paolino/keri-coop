@@ -1,0 +1,9 @@
+dist-newstyle/
+result
+.direnv/
+*.db
+
+# PureScript
+client/output/
+client/node_modules/
+client/.spago/
