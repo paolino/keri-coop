@@ -5,8 +5,6 @@ module FFI.TweetNaCl
   , verify
   ) where
 
-import Prelude
-
 import Data.ArrayBuffer.Types (Uint8Array)
 import Effect (Effect)
 
