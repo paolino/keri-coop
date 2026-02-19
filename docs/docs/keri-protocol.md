@@ -57,11 +57,11 @@ No registry, DNS, or blockchain is consulted to verify this binding. The math al
 
 ```mermaid
 flowchart TD
-    K1["Inception Key Pair\npub_key_0, priv_key_0"]
-    H["Hash(pub_key_0)\nBlake3 / SHA3-256"]
-    AID["AID Prefix\nBase64URL(hash)\ne.g. EKpNx3NqKFPSGF9..."]
-    SIGN["Sign events with\npriv_key_0"]
-    VERIFY["Anyone can verify:\nHash(pub_key_0) == AID prefix\nNo CA needed"]
+    K1["Inception Key Pair<br>pub_key_0, priv_key_0"]
+    H["Hash(pub_key_0)<br>Blake3 / SHA3-256"]
+    AID["AID Prefix<br>Base64URL(hash)<br>e.g. EKpNx3NqKFPSGF9..."]
+    SIGN["Sign events with<br>priv_key_0"]
+    VERIFY["Anyone can verify:<br>Hash(pub_key_0) == AID prefix<br>No CA needed"]
 
     K1 --> H --> AID
     K1 --> SIGN
@@ -130,10 +130,10 @@ The **SAID** (Self-Addressing IDentifier) is the digest of the event itself, com
 
 ```mermaid
 flowchart LR
-    icp["icp sn=0\np: null\nk: pub_key_0\nn: H(next_key_0)\nsigned: priv_key_0"]
-    ixn["ixn sn=1\np: SAID(icp)\na: anchor_data\nsigned: priv_key_0"]
-    rot["rot sn=2\np: SAID(ixn)\nk: next_key_0 revealed\nn: H(next_key_1)\nsigned: next_priv_key_0"]
-    ixn2["ixn sn=3\np: SAID(rot)\na: anchor_data\nsigned: next_priv_key_0"]
+    icp["icp sn=0<br>p: null<br>k: pub_key_0<br>n: H(next_key_0)<br>signed: priv_key_0"]
+    ixn["ixn sn=1<br>p: SAID(icp)<br>a: anchor_data<br>signed: priv_key_0"]
+    rot["rot sn=2<br>p: SAID(ixn)<br>k: next_key_0 revealed<br>n: H(next_key_1)<br>signed: next_priv_key_0"]
+    ixn2["ixn sn=3<br>p: SAID(rot)<br>a: anchor_data<br>signed: next_priv_key_0"]
 
     icp --> ixn --> rot --> ixn2
 ```
@@ -175,19 +175,19 @@ stateDiagram-v2
 
     Inception --> Active : Witnesses receipt icp
 
-    Active --> Active : ixn event\nanchor data, no key change
+    Active --> Active : ixn event<br>anchor data, no key change
 
-    Active --> Rotated : rot event\nnew keys revealed\nnew pre-rotation committed
+    Active --> Rotated : rot event<br>new keys revealed<br>new pre-rotation committed
 
-    Rotated --> Active : ixn event\nusing new keys
+    Rotated --> Active : ixn event<br>using new keys
 
-    Rotated --> Rotated : rot event\nrotate again
+    Rotated --> Rotated : rot event<br>rotate again
 
-    Active --> Delegating : dip event\ndelegate to child AID
+    Active --> Delegating : dip event<br>delegate to child AID
 
-    Delegating --> Active : delegation anchored\nin delegator KEL
+    Delegating --> Active : delegation anchored<br>in delegator KEL
 
-    Active --> [*] : rot with empty next keys\ndeliberate abandonment
+    Active --> [*] : rot with empty next keys<br>deliberate abandonment
 ```
 
 ---
@@ -270,14 +270,14 @@ flowchart LR
         KEL["Key Event Log"]
     end
 
-    subgraph Witnesses["Witness Pool\ncontroller-chosen"]
+    subgraph Witnesses["Witness Pool<br>controller-chosen"]
         W1["Witness 1"]
         W2["Witness 2"]
         W3["Witness 3"]
     end
 
     subgraph Verifier["Verifier"]
-        subgraph Watchers["Watcher Pool\nverifier-chosen"]
+        subgraph Watchers["Watcher Pool<br>verifier-chosen"]
             Wt1["Watcher A"]
             Wt2["Watcher B"]
         end
@@ -347,7 +347,7 @@ flowchart TD
 
     Watcher{"Watcher: sn=3 conflict!"}
 
-    Watcher -->|"DUPLICITY DETECTED"| Alert["Verifier flagged:\nAID untrustworthy"]
+    Watcher -->|"DUPLICITY DETECTED"| Alert["Verifier flagged:<br>AID untrustworthy"]
 ```
 
 ### Duplicity is Detectable, Not Preventable
@@ -380,19 +380,19 @@ The root of trust is **the inception event** and the **key ceremony** that produ
 ```mermaid
 flowchart LR
     subgraph Bootstrap["Out-of-Band Bootstrap"]
-        OOB["Alice shares AID\nwith Bob\nQR / NFC / URL"]
+        OOB["Alice shares AID<br>with Bob<br>QR / NFC / URL"]
     end
 
     subgraph Alice["Alice - Controller"]
-        AKEL["Alice's KEL\nicp to ixn to rot"]
-        AWit["Alice's Witnesses\nW1, W2, W3"]
+        AKEL["Alice's KEL<br>icp to ixn to rot"]
+        AWit["Alice's Witnesses<br>W1, W2, W3"]
         AKEL --> AWit
     end
 
     subgraph Bob["Bob - Verifier"]
         BWat["Bob's Watchers"]
-        BVerify["1. Fetch KEL from witnesses\n2. Validate hash chain\n3. Check pre-rotation\n4. Verify all signatures\n5. No duplicity detected"]
-        TRUST["Trust established\npurely cryptographically"]
+        BVerify["1. Fetch KEL from witnesses<br>2. Validate hash chain<br>3. Check pre-rotation<br>4. Verify all signatures<br>5. No duplicity detected"]
+        TRUST["Trust established<br>purely cryptographically"]
         BWat --> BVerify --> TRUST
     end
 
@@ -458,7 +458,7 @@ flowchart TD
     end
 
     subgraph ACDC["ACDC Credential"]
-        CRED["Issuer AID\nHolder AID\nClaims + Schema\nSAID\nSigned by Issuer"]
+        CRED["Issuer AID<br>Holder AID<br>Claims + Schema<br>SAID<br>Signed by Issuer"]
     end
 
     subgraph Verify["Verification"]

@@ -12,6 +12,23 @@ theme:
     - navigation.sections
     - content.code.copy
 
+plugins:
+  - i18n:
+      languages:
+        - locale: en
+          name: English
+          build: true
+          default: true
+        - locale: it
+          name: Italiano
+          build: true
+          nav_translations:
+            Home: Home
+            Architecture: Architettura
+            Domain: Dominio
+            KERI Protocol: Protocollo KERI
+            KERI Integration: Integrazione KERI
+
 markdown_extensions:
   - pymdownx.superfences:
       custom_fences:
