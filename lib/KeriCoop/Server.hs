@@ -9,7 +9,8 @@ import Data.Map.Strict qualified as Map
 import KeriCoop.Server.Api (apiApp)
 import KeriCoop.Server.Database (initDatabase)
 import KeriCoop.Server.WebSocket (wsApp)
-import Network.Wai (Request (..))
+import Network.HTTP.Types (status200)
+import Network.Wai (Request (..), responseLBS)
 import Network.Wai.Application.Static (
     defaultFileServerSettings,
     staticApp,
@@ -38,6 +39,9 @@ run Options{..} = do
                 (wsApp subs)
                 ( \req respond ->
                     case pathInfo req of
+                        ["health"] ->
+                            respond $
+                                responseLBS status200 [] "ok"
                         ("api" : _) -> api req respond
                         _ -> static req respond
                 )

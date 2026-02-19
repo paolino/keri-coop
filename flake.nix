@@ -30,6 +30,9 @@
           default = project.packages.keri-coop-server;
           inherit docker-image;
         };
+        legacyPackages.imageTag = version;
         devShells = project.devShells;
-      });
+      }) // {
+        imageTag = self.shortRev or self.dirtyShortRev or "dev";
+      };
 }
