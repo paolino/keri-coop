@@ -25,11 +25,16 @@ package:
     - exceptions
     - newtype
     - control
+    - spec
+    - spec-node
   bundle:
     module: Main
     outfile: dist/index.js
     platform: browser
     type: app
+  test:
+    main: Test.Main
+    dependencies: []
 
 workspace:
   packageSet:

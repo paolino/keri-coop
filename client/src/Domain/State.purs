@@ -37,10 +37,20 @@ data CommitmentStatus = Pending | Approved | Rejected
 
 derive instance eqCommitmentStatus :: Eq CommitmentStatus
 
+instance showCommitmentStatus :: Show CommitmentStatus where
+  show Pending = "Pending"
+  show Approved = "Approved"
+  show Rejected = "Rejected"
+
 -- | Purchase lifecycle phase.
 data PurchasePhase = Open | Closed | Failed
 
 derive instance eqPurchasePhase :: Eq PurchasePhase
+
+instance showPurchasePhase :: Show PurchasePhase where
+  show Open = "Open"
+  show Closed = "Closed"
+  show Failed = "Failed"
 
 -- | State of a single purchase.
 type PurchaseState =

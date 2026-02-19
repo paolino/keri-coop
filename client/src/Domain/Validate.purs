@@ -25,6 +25,15 @@ data ValidationError
 
 derive instance eqValidationError :: Eq ValidationError
 
+instance showValidationError :: Show ValidationError where
+  show (NotAnAdmin mid) = "NotAnAdmin " <> show mid
+  show (NotACassiere mid) = "NotACassiere " <> show mid
+  show (NotAReferente mid) = "NotAReferente " <> show mid
+  show (MemberNotFound mid) = "MemberNotFound " <> show mid
+  show (PurchaseNotFound pid) = "PurchaseNotFound " <> show pid
+  show (PurchaseNotOpen pid) = "PurchaseNotOpen " <> show pid
+  show (InsufficientBalance mid) = "InsufficientBalance " <> show mid
+
 -- | Validate that a signer is authorized to submit an event
 -- | given the current group state. Returns Nothing if valid.
 validateEvent

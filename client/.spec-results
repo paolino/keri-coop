@@ -1,0 +1,303 @@
+[
+  [
+    "CESR roundtrip encoded Ed25519PubKey starts with D",
+    {
+      "timestamp": "1771517853748.0",
+      "success": true
+    }
+  ],
+  [
+    "CESR roundtrip encoded Ed25519Sig starts with 0B",
+    {
+      "timestamp": "1771517853748.0",
+      "success": true
+    }
+  ],
+  [
+    "CESR roundtrip rejects wrong-size raw bytes",
+    {
+      "timestamp": "1771517853748.0",
+      "success": true
+    }
+  ],
+  [
+    "CESR roundtrip roundtrips Blake3 digest",
+    {
+      "timestamp": "1771517853748.0",
+      "success": true
+    }
+  ],
+  [
+    "CESR roundtrip roundtrips Ed25519 public key",
+    {
+      "timestamp": "1771517853748.0",
+      "success": true
+    }
+  ],
+  [
+    "CESR roundtrip roundtrips Ed25519 signature",
+    {
+      "timestamp": "1771517853748.0",
+      "success": true
+    }
+  ],
+  [
+    "Crypto.Digest computeSaid is deterministic",
+    {
+      "timestamp": "1771517853748.0",
+      "success": true
+    }
+  ],
+  [
+    "Crypto.Digest computeSaid returns CESR-encoded Blake3 digest",
+    {
+      "timestamp": "1771517853748.0",
+      "success": true
+    }
+  ],
+  [
+    "Crypto.Digest different inputs produce different SAIDs",
+    {
+      "timestamp": "1771517853748.0",
+      "success": true
+    }
+  ],
+  [
+    "Crypto.Digest saidPlaceholder has correct length",
+    {
+      "timestamp": "1771517853748.0",
+      "success": true
+    }
+  ],
+  [
+    "Crypto.Digest saidPlaceholder is all #",
+    {
+      "timestamp": "1771517853748.0",
+      "success": true
+    }
+  ],
+  [
+    "Domain.State economics deposits increase balance",
+    {
+      "timestamp": "1771517853748.0",
+      "success": true
+    }
+  ],
+  [
+    "Domain.State economics withdrawals decrease balance",
+    {
+      "timestamp": "1771517853748.0",
+      "success": true
+    }
+  ],
+  [
+    "Domain.State governance voting elects cassiere",
+    {
+      "timestamp": "1771517853748.0",
+      "success": true
+    }
+  ],
+  [
+    "Domain.State governance voting elects referente",
+    {
+      "timestamp": "1771517853748.0",
+      "success": true
+    }
+  ],
+  [
+    "Domain.State governance voting quorum is 1 for single admin",
+    {
+      "timestamp": "1771517853748.0",
+      "success": true
+    }
+  ],
+  [
+    "Domain.State governance voting registers a member on single-admin quorum",
+    {
+      "timestamp": "1771517853748.0",
+      "success": true
+    }
+  ],
+  [
+    "Domain.State governance voting requires 2 votes with 2 admins",
+    {
+      "timestamp": "1771517853748.0",
+      "success": true
+    }
+  ],
+  [
+    "Domain.State governance voting vote tally clears on quorum",
+    {
+      "timestamp": "1771517853748.0",
+      "success": true
+    }
+  ],
+  [
+    "Domain.State purchases closes a purchase",
+    {
+      "timestamp": "1771517853748.0",
+      "success": true
+    }
+  ],
+  [
+    "Domain.State purchases commits to a purchase and debits balance",
+    {
+      "timestamp": "1771517853748.0",
+      "success": true
+    }
+  ],
+  [
+    "Domain.State purchases fails a purchase and refunds commitments",
+    {
+      "timestamp": "1771517853748.0",
+      "success": true
+    }
+  ],
+  [
+    "Domain.State purchases opens a purchase",
+    {
+      "timestamp": "1771517853748.0",
+      "success": true
+    }
+  ],
+  [
+    "Domain.Validate economics allows cassiere to deposit",
+    {
+      "timestamp": "1771517853748.0",
+      "success": true
+    }
+  ],
+  [
+    "Domain.Validate economics rejects non-cassiere deposit",
+    {
+      "timestamp": "1771517853748.0",
+      "success": true
+    }
+  ],
+  [
+    "Domain.Validate economics rejects withdrawal for missing member",
+    {
+      "timestamp": "1771517853748.0",
+      "success": true
+    }
+  ],
+  [
+    "Domain.Validate governance allows admin to vote",
+    {
+      "timestamp": "1771517853748.0",
+      "success": true
+    }
+  ],
+  [
+    "Domain.Validate governance rejects non-admin vote",
+    {
+      "timestamp": "1771517853748.0",
+      "success": true
+    }
+  ],
+  [
+    "Domain.Validate purchases allows commit to open purchase with balance",
+    {
+      "timestamp": "1771517853748.0",
+      "success": true
+    }
+  ],
+  [
+    "Domain.Validate purchases allows referente to open purchase",
+    {
+      "timestamp": "1771517853748.0",
+      "success": true
+    }
+  ],
+  [
+    "Domain.Validate purchases rejects commit to nonexistent purchase",
+    {
+      "timestamp": "1771517853748.0",
+      "success": true
+    }
+  ],
+  [
+    "Domain.Validate purchases rejects commit with insufficient balance",
+    {
+      "timestamp": "1771517853748.0",
+      "success": true
+    }
+  ],
+  [
+    "Domain.Validate purchases rejects non-referente opening purchase",
+    {
+      "timestamp": "1771517853748.0",
+      "success": true
+    }
+  ],
+  [
+    "Domain.Validate purchases rejects vote close for nonexistent purchase",
+    {
+      "timestamp": "1771517853748.0",
+      "success": true
+    }
+  ],
+  [
+    "Event.Inception SAID is verifiable from serialized event",
+    {
+      "timestamp": "1771517853748.0",
+      "success": true
+    }
+  ],
+  [
+    "Event.Inception creates inception with prefix = digest (self-addressing)",
+    {
+      "timestamp": "1771517853748.0",
+      "success": true
+    }
+  ],
+  [
+    "Event.Inception inception has sequence number 0",
+    {
+      "timestamp": "1771517853748.0",
+      "success": true
+    }
+  ],
+  [
+    "Event.Inception serialized event is valid JSON-like string",
+    {
+      "timestamp": "1771517853748.0",
+      "success": true
+    }
+  ],
+  [
+    "KEL appends inception to empty KEL",
+    {
+      "timestamp": "1771517853748.0",
+      "success": true
+    }
+  ],
+  [
+    "KEL appends interaction after inception",
+    {
+      "timestamp": "1771517853748.0",
+      "success": true
+    }
+  ],
+  [
+    "KEL rejects event with wrong sequence number",
+    {
+      "timestamp": "1771517853748.0",
+      "success": true
+    }
+  ],
+  [
+    "Protocol.Message creates and verifies a signed group message",
+    {
+      "timestamp": "1771517853748.0",
+      "success": true
+    }
+  ],
+  [
+    "Protocol.Message extractSignedEvent returns correct signer",
+    {
+      "timestamp": "1771517853748.0",
+      "success": true
+    }
+  ]
+]
