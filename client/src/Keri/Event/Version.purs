@@ -3,6 +3,7 @@ module Keri.Event.Version
   , versionPlaceholder
   , versionPrefix
   , parseVersionSize
+  , intToHex
   ) where
 
 import Prelude

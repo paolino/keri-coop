@@ -5,8 +5,9 @@ module Keri.Event.Serialize
 import Prelude
 
 import Data.Argonaut.Core (stringify)
-import Data.Array (intercalate)
+import Json.Canonical (jsonStr, jsonArr, jsonObj, kv)
 import Keri.Event (Event(..), InceptionData, RotationData, InteractionData, ReceiptData)
+import Keri.Event.Version (intToHex)
 
 -- | Serialize an event to canonical JSON string.
 -- Field order is protocol-defined and guaranteed.
@@ -71,21 +72,3 @@ serializeReceipt d = jsonObj
   , kv "i" (jsonStr d.prefix)
   , kv "s" (jsonStr (intToHex d.sequenceNumber))
   ]
-
--- JSON string builders (no whitespace, deterministic order)
-
-jsonStr :: String -> String
-jsonStr s = "\"" <> escapeJson s <> "\""
-
-jsonArr :: Array String -> String
-jsonArr items = "[" <> intercalate "," items <> "]"
-
-jsonObj :: Array String -> String
-jsonObj pairs = "{" <> intercalate "," pairs <> "}"
-
-kv :: String -> String -> String
-kv k v = jsonStr k <> ":" <> v
-
-foreign import escapeJson :: String -> String
-
-foreign import intToHex :: Int -> String
