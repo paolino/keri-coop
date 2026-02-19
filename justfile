@@ -76,6 +76,16 @@ docker:
     nix build .#docker-image
     docker load < result
 
+# -- Docs --
+
+# Serve docs locally
+docs-serve:
+    nix develop github:paolino/dev-assets?dir=mkdocs -c mkdocs serve -f docs/mkdocs.yml
+
+# Build docs
+docs-build:
+    nix develop github:paolino/dev-assets?dir=mkdocs -c mkdocs build -f docs/mkdocs.yml
+
 # Clean build artifacts
 clean:
     #!/usr/bin/env bash

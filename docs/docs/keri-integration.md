@@ -12,10 +12,10 @@ no username/password — the AID *is* the identity.
 
 ```mermaid
 flowchart LR
-    KP["Ed25519 Key Pair\n(generated in browser)"]
+    KP["Ed25519 Key Pair<br>(generated in browser)"]
     H["Blake3(pub_key)"]
-    AID["AID Prefix\nCESR-encoded"]
-    MID["MemberId\n= AID"]
+    AID["AID Prefix<br>CESR-encoded"]
+    MID["MemberId<br>= AID"]
 
     KP --> H --> AID --> MID
 ```
@@ -38,11 +38,11 @@ signed with the member's current private key and appended to the group log.
 
 ```mermaid
 flowchart TD
-    DE["Domain Event\ne.g. VoteRegisterMember 'Alice'"]
-    CJ["Canonical JSON\n{'name':'Alice','t':'VoteRegisterMember'}"]
-    IXN["KERI ixn Event\nprefix: signer AID\nsn: next seq number\np: prior event digest\na: [canonical JSON]"]
-    SIG["Ed25519 Signature\nover serialized ixn"]
-    GM["GroupMessage\n{ keriEvent, domainEvent }"]
+    DE["Domain Event<br>e.g. VoteRegisterMember 'Alice'"]
+    CJ["Canonical JSON<br>{'name':'Alice','t':'VoteRegisterMember'}"]
+    IXN["KERI ixn Event<br>prefix: signer AID<br>sn: next seq number<br>p: prior event digest<br>a: [canonical JSON]"]
+    SIG["Ed25519 Signature<br>over serialized ixn"]
+    GM["GroupMessage<br>{ keriEvent, domainEvent }"]
 
     DE --> CJ --> IXN --> SIG --> GM
 ```
@@ -64,19 +64,19 @@ keri-coop maintains two conceptual logs that serve different purposes:
 ```mermaid
 flowchart LR
     subgraph KERI["KERI Layer (per member)"]
-        KEL["Key Event Log\nicp → ixn → rot → ixn → ..."]
-        KS["Key State\ncurrent keys, thresholds,\npre-rotation commitments"]
+        KEL["Key Event Log<br>icp → ixn → rot → ixn → ..."]
+        KS["Key State<br>current keys, thresholds,<br>pre-rotation commitments"]
         KEL --> KS
     end
 
     subgraph Domain["Domain Layer (per group)"]
-        GL["Group Log\nSequence of signed domain events"]
-        GS["Group State\nmembers, balances,\npurchases, votes"]
+        GL["Group Log<br>Sequence of signed domain events"]
+        GS["Group State<br>members, balances,<br>purchases, votes"]
         GL --> GS
     end
 
-    KEL -.->|"ixn anchors\ndomain events"| GL
-    KS -.->|"signature\nverification"| GL
+    KEL -.->|"ixn anchors<br>domain events"| GL
+    KS -.->|"signature<br>verification"| GL
 ```
 
 | Log | Scope | Purpose | Events |
@@ -105,11 +105,11 @@ sequenceDiagram
     S->>C: GroupMessage { keriEvent, domainEvent }
 
     C->>KV: Verify ixn signature
-    Note over KV: 1. Look up signer's KeyState\n2. Verify Ed25519 signature\n3. Check signing threshold\n4. Validate hash chain (sn, prior digest)
+    Note over KV: 1. Look up signer's KeyState<br>2. Verify Ed25519 signature<br>3. Check signing threshold<br>4. Validate hash chain (sn, prior digest)
     KV-->>C: signature valid
 
     C->>DV: Validate domain event
-    Note over DV: 1. Extract signer AID → MemberId\n2. Check authorization\n(admin? referente? cassiere?)\n3. Check preconditions\n(balance, purchase open, etc.)
+    Note over DV: 1. Extract signer AID → MemberId<br>2. Check authorization<br>(admin? referente? cassiere?)<br>3. Check preconditions<br>(balance, purchase open, etc.)
     DV-->>C: event authorized
 
     C->>C: Apply to GroupState
@@ -125,7 +125,7 @@ determines their `MemberId`, which is checked against the current `GroupState`:
 ```mermaid
 flowchart TD
     subgraph Roles["Roles (derived from GroupState)"]
-        Admin["Admin\n= Referente ∪ Cassiere"]
+        Admin["Admin<br>= Referente ∪ Cassiere"]
         Ref["Referente"]
         Cas["Cassiere"]
         Mem["Member"]
@@ -186,15 +186,15 @@ sequenceDiagram
     K-->>B: { publicKey, secretKey }
 
     B->>K: Create inception event (icp)
-    Note over K: prefix = Blake3(pubKey)\nnextKeys = [H(next_pub)]\nthreshold = 1
+    Note over K: prefix = Blake3(pubKey)<br>nextKeys = [H(next_pub)]<br>threshold = 1
 
     B->>K: Create ixn: VoteRegisterMember "founder"
-    Note over K: Anchors domain event\nSigned by inception key
+    Note over K: Anchors domain event<br>Signed by inception key
 
     B->>S: POST /api/groups (create group)
     B->>S: POST /api/groups/:id/events (icp + ixn)
 
-    Note over S: Group created with founder\nas sole member, referente,\nand cassiere
+    Note over S: Group created with founder<br>as sole member, referente,<br>and cassiere
 ```
 
 Since the founder is the only admin at bootstrap, their single vote
@@ -213,13 +213,13 @@ sequenceDiagram
     participant K as KEL
     participant G as Group Log
 
-    Note over K: Current state:\nkeys = [pub_key_0]\nnext = [H(pub_key_1)]
+    Note over K: Current state:<br>keys = [pub_key_0]<br>next = [H(pub_key_1)]
 
     M->>K: rot event (reveal pub_key_1, commit H(pub_key_2))
-    Note over K: New state:\nkeys = [pub_key_1]\nnext = [H(pub_key_2)]
+    Note over K: New state:<br>keys = [pub_key_1]<br>next = [H(pub_key_2)]
 
     M->>G: ixn: Deposit member_X 5000
-    Note over G: Signed with pub_key_1\nVerified against updated KeyState\nAID unchanged → MemberId unchanged
+    Note over G: Signed with pub_key_1<br>Verified against updated KeyState<br>AID unchanged → MemberId unchanged
 ```
 
 This means a member can rotate keys (e.g. after a suspected compromise)
@@ -238,16 +238,16 @@ sequenceDiagram
     participant Mem as Member
     participant Log as Group Log
 
-    Note over Cas: Each arrow is a KERI ixn\nanchoring a domain event
+    Note over Cas: Each arrow is a KERI ixn<br>anchoring a domain event
 
     Cas->>Log: ixn: Deposit(member, 10000)
     Note over Log: member.balance += 10000
 
     Ref->>Log: ixn: OpenPurchase("Olive Oil")
-    Note over Log: purchase created\npid = SAID of this ixn
+    Note over Log: purchase created<br>pid = SAID of this ixn
 
     Mem->>Log: ixn: Commit(member, 3000, pid)
-    Note over Log: member.balance -= 3000\ncommitment = Pending
+    Note over Log: member.balance -= 3000<br>commitment = Pending
 
     Ref->>Log: ixn: ApproveCommitment(member, pid)
     Note over Log: commitment = Approved
@@ -273,21 +273,21 @@ signed KERI events:
 ```mermaid
 flowchart LR
     subgraph Client["Browser (PureScript)"]
-        KERI["KERI Module\nSign / Verify"]
-        DOM["Domain Module\nValidate / Apply"]
+        KERI["KERI Module<br>Sign / Verify"]
+        DOM["Domain Module<br>Validate / Apply"]
         UI["Halogen UI"]
         KERI <--> DOM <--> UI
     end
 
     subgraph Server["Haskell Server"]
-        API["HTTP API\nappend / fetch"]
-        DB["SQLite\n(group_id, seq, payload)"]
-        WS["WebSocket\nreal-time push"]
+        API["HTTP API<br>append / fetch"]
+        DB["SQLite<br>(group_id, seq, payload)"]
+        WS["WebSocket<br>real-time push"]
         API <--> DB
         DB --> WS
     end
 
-    Client <-->|"signed ixn events\n(opaque to server)"| Server
+    Client <-->|"signed ixn events<br>(opaque to server)"| Server
 ```
 
 The server enforces only:
