@@ -9,8 +9,6 @@ module Keri.Event
   , eventSequenceNumber
   ) where
 
-import Prelude
-
 import Data.Argonaut.Core (Json)
 
 data Event
