@@ -30,13 +30,13 @@ lint:
 
 # -- PureScript client --
 
-# Build PureScript client
+# Build PureScript client (warnings are errors)
 build-client:
-    cd client && spago build
+    cd client && spago build --strict
 
 # Bundle PureScript client for browser
 bundle-client:
-    cd client && npm ci && spago bundle
+    cd client && npm ci && spago bundle --strict
 
 # Format PureScript sources
 format-client:
