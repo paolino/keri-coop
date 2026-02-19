@@ -8,8 +8,23 @@ theme:
   palette:
     scheme: slate
     primary: teal
+  features:
+    - navigation.sections
+    - content.code.copy
+
+markdown_extensions:
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+extra_javascript:
+  - javascripts/mermaid.mjs
 
 nav:
   - Home: index.md
   - Architecture: architecture.md
   - Domain: domain.md
+  - KERI Protocol: keri-protocol.md
+  - KERI Integration: keri-integration.md
