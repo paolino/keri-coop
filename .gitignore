@@ -7,3 +7,4 @@ result
 client/output/
 client/node_modules/
 client/.spago/
+client/dist/index.js
