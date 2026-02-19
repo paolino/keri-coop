@@ -16,6 +16,7 @@ import Data.Bifunctor (lmap)
 import Data.Either (Either(..))
 import Effect (Effect)
 import Effect.Aff (Aff, throwError)
+import Effect.Class (liftEffect)
 import Effect.Exception (error)
 import FFI.Fetch as Fetch
 import FFI.WebSocket as WS
@@ -23,11 +24,16 @@ import FFI.WebSocket as WS
 -- | Compute the WebSocket base URL from the page location.
 foreign import getWsUrl :: Effect String
 
+-- | Generate a random UUID for group IDs.
+foreign import generateId :: Effect String
+
 -- | Create a new group on the server. Returns the group ID.
 createGroup :: String -> Aff String
 createGroup baseUrl = do
+  gid <- liftEffect generateId
+  let body = stringify (encodeJson { groupId: gid })
   res <- Fetch.fetch (baseUrl <> "/api/groups")
-    { method: "POST", body: "" }
+    { method: "POST", body }
   when (res.status /= 200 && res.status /= 201) $
     throwError (error $ "createGroup failed: " <> show res.status)
   r :: { groupId :: String } <- parseBody res.body
