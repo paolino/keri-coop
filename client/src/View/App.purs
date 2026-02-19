@@ -5,17 +5,19 @@ module View.App
 import Prelude
 
 import Data.Const (Const)
+import Data.Either (Either(..))
 import Data.Maybe (Maybe(..))
 import Data.String as String
-import Domain.Event (DomainEvent(..))
-import Domain.State (GroupState)
+import Domain.Event (DomainEvent(..), serializeDomainEvent)
 import Domain.State as DS
 import Domain.Types (PurchaseName(..))
-import Effect.Aff.Class (class MonadAff)
+import Effect.Aff.Class (class MonadAff, liftAff)
 import Halogen as H
 import Halogen.HTML as HH
 import Halogen.HTML.Events as HE
 import Halogen.HTML.Properties as HP
+import Protocol.Client as Client
+import Protocol.Message as Msg
 import Type.Proxy (Proxy(..))
 import View.Dashboard as Dashboard
 import View.Identity as Identity
@@ -28,7 +30,9 @@ type State =
   { screen :: Screen
   , identity :: Maybe Identity
   , groupId :: Maybe String
-  , groupState :: GroupState
+  , groupState :: DS.GroupState
+  , sequenceNumber :: Int
+  , priorDigest :: String
   , newGroupInput :: String
   , newPurchaseInput :: String
   , error :: Maybe String
@@ -70,6 +74,8 @@ initialState =
   , identity: Nothing
   , groupId: Nothing
   , groupState: DS.emptyState
+  , sequenceNumber: 0
+  , priorDigest: ""
   , newGroupInput: ""
   , newPurchaseInput: ""
   , error: Nothing
@@ -146,6 +152,9 @@ groupSetup st = HH.div [ HP.class_ (HH.ClassName "group-setup") ]
       ]
   ]
 
+baseUrl :: String
+baseUrl = ""
+
 handleAction :: forall o m. MonadAff m => Action -> H.HalogenM State Action Slots o m Unit
 handleAction = case _ of
   HandleIdentity ident -> do
@@ -172,12 +181,14 @@ handleAction = case _ of
   SetNewPurchaseInput s -> H.modify_ _ { newPurchaseInput = s }
 
   CreateGroup -> do
-    H.modify_ _ { groupId = Just "demo-group", groupState = DS.emptyState }
+    H.modify_ _ { error = Nothing }
+    result <- liftAff $ Client.createGroup baseUrl
+    H.modify_ _ { groupId = Just result, groupState = DS.emptyState }
 
   JoinGroup -> do
     st <- H.get
     when (st.newGroupInput /= "") do
-      H.modify_ _ { groupId = Just st.newGroupInput, newGroupInput = "" }
+      H.modify_ _ { groupId = Just st.newGroupInput, newGroupInput = "", error = Nothing }
 
   OpenNewPurchase -> do
     st <- H.get
@@ -185,8 +196,39 @@ handleAction = case _ of
       handleAction (SubmitEvent (OpenPurchase (PurchaseName st.newPurchaseInput)))
       H.modify_ _ { newPurchaseInput = "" }
 
-  SubmitEvent _ev -> do
-    -- TODO: sign and send via Protocol.Message + Protocol.Client
-    pure unit
+  SubmitEvent ev -> do
+    st <- H.get
+    case st.identity, st.groupId of
+      Just ident, Just _ -> do
+        case
+          Msg.mkGroupMessage
+            { prefix: ident.prefix
+            , sequenceNumber: st.sequenceNumber
+            , priorDigest: st.priorDigest
+            , secretKey: ident.keyPair
+            , keyIndex: 0
+            }
+            ev
+          of
+          Left err ->
+            H.modify_ _ { error = Just ("Sign failed: " <> err) }
+          Right msg -> do
+            let
+              payload = serializeDomainEvent ev
+              signed = Msg.extractSignedEvent msg
+              newState = DS.applySignedEvent signed st.groupState
+            H.modify_ _
+              { groupState = newState
+              , sequenceNumber = st.sequenceNumber + 1
+              , error = Nothing
+              }
+            -- Send to server (fire-and-forget, log errors)
+            case st.groupId of
+              Just groupId -> liftAff do
+                _ <- Client.appendEvent baseUrl groupId st.sequenceNumber payload
+                pure unit
+              Nothing -> pure unit
+      _, _ ->
+        H.modify_ _ { error = Just "No identity or group" }
 
   Navigate screen -> H.modify_ _ { screen = screen }
