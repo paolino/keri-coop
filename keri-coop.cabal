@@ -66,3 +66,24 @@ executable keri-coop-server
     , base
     , keri-coop
     , optparse-applicative  >=0.17 && <0.19
+
+test-suite integration-tests
+  import:         language, opts-exe
+  type:           exitcode-stdio-1.0
+  hs-source-dirs: test
+  main-is:        Main.hs
+  build-depends:
+    , aeson
+    , base
+    , bytestring
+    , containers
+    , hspec           >=2.10 && <2.12
+    , http-client     >=0.7  && <0.8
+    , http-types
+    , keri-coop
+    , stm
+    , text
+    , wai
+    , wai-websockets
+    , warp
+    , websockets

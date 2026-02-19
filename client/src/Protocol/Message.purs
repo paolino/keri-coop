@@ -3,15 +3,23 @@ module Protocol.Message
   , mkGroupMessage
   , verifyGroupMessage
   , extractSignedEvent
+  , serializeSignedEvent
+  , deserializeSignedEvent
   ) where
 
 import Prelude
 
-import Data.Argonaut.Core (fromString)
-import Data.Either (Either)
+import Data.Argonaut.Core (fromObject, fromString, stringify)
+import Data.Argonaut.Decode (decodeJson, printJsonDecodeError, (.:))
+import Data.Argonaut.Parser (jsonParser)
+import Data.Bifunctor (lmap)
+import Data.Either (Either(..))
+import Data.Newtype (unwrap)
+import Data.Tuple (Tuple(..))
 import Domain.Event (DomainEvent, serializeDomainEvent)
 import Domain.State (SignedEvent) as DS
 import Domain.Types (AID(..), MemberId(..))
+import Foreign.Object as Object
 import FFI.TextEncoder (encodeUtf8)
 import FFI.TweetNaCl as NaCl
 import Keri.Cesr.DerivationCode (DerivationCode(..))
@@ -90,3 +98,34 @@ extractSignedEvent msg =
     , eventId
     , event: msg.domainEvent
     }
+
+-- | Serialize a SignedEvent to JSON for server storage.
+-- | Produces: @{ "event": {..}, "eventId": "E...", "signer": "B..." }@
+serializeSignedEvent :: DS.SignedEvent -> String
+serializeSignedEvent se =
+  let
+    signerStr = unwrap (unwrap se.signer) :: String
+    eventJson = case jsonParser (serializeDomainEvent se.event) of
+      Right j -> j
+      Left _ -> fromString (serializeDomainEvent se.event)
+  in
+    stringify
+      ( fromObject
+          ( Object.fromFoldable
+              [ Tuple "event" eventJson
+              , Tuple "eventId" (fromString se.eventId)
+              , Tuple "signer" (fromString signerStr)
+              ]
+          )
+      )
+
+-- | Deserialize a JSON payload back to a SignedEvent.
+deserializeSignedEvent :: String -> Either String DS.SignedEvent
+deserializeSignedEvent s = do
+  json <- lmap show (jsonParser s)
+  lmap printJsonDecodeError do
+    obj <- decodeJson json
+    signer <- obj .: "signer"
+    eventId <- obj .: "eventId"
+    event <- obj .: "event"
+    pure { signer, eventId, event }

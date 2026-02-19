@@ -24,6 +24,10 @@ format:
         find . -name "*.nix" -not -path "./dist-newstyle/*" | xargs nixfmt
     '
 
+# Run Haskell integration tests
+test:
+    {{ nix }} "cabal test integration-tests -O0 --test-show-details=direct"
+
 # -- PureScript client --
 
 # Build PureScript client (warnings are errors)
@@ -53,6 +57,7 @@ ci:
     #!/usr/bin/env bash
     set -euo pipefail
     just build
+    just test
     just lint-client
     just build-client
     {{ nix }} "cd client && npm ci --silent"

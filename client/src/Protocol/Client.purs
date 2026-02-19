@@ -3,6 +3,7 @@ module Protocol.Client
   , fetchEvents
   , appendEvent
   , subscribeGroup
+  , getWsUrl
   ) where
 
 import Prelude
@@ -19,6 +20,9 @@ import Effect.Exception (error)
 import FFI.Fetch as Fetch
 import FFI.WebSocket as WS
 
+-- | Compute the WebSocket base URL from the page location.
+foreign import getWsUrl :: Effect String
+
 -- | Create a new group on the server. Returns the group ID.
 createGroup :: String -> Aff String
 createGroup baseUrl = do
@@ -30,6 +34,7 @@ createGroup baseUrl = do
   pure r.groupId
 
 -- | Fetch events for a group after a given sequence number.
+-- | Server returns @{ "events": [...] }@ envelope.
 fetchEvents :: String -> String -> Int -> Aff (Array { seq :: Int, payload :: String })
 fetchEvents baseUrl groupId afterSeq = do
   res <- Fetch.fetch
@@ -37,7 +42,8 @@ fetchEvents baseUrl groupId afterSeq = do
     { method: "GET", body: "" }
   when (res.status /= 200) $
     throwError (error $ "fetchEvents failed: " <> show res.status)
-  parseBody res.body
+  r :: { events :: Array { seq :: Int, payload :: String } } <- parseBody res.body
+  pure r.events
 
 -- | Append a signed event to a group's log. Returns the assigned
 -- | sequence number.

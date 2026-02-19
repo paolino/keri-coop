@@ -4,18 +4,26 @@ module View.App
 
 import Prelude
 
+import Data.Argonaut.Decode (decodeJson, printJsonDecodeError, (.:))
+import Data.Argonaut.Parser (jsonParser)
+import Data.Bifunctor (lmap)
 import Data.Const (Const)
 import Data.Either (Either(..))
+import Data.Foldable (foldl)
 import Data.Maybe (Maybe(..))
 import Data.String as String
-import Domain.Event (DomainEvent(..), serializeDomainEvent)
+import Domain.Event (DomainEvent(..))
 import Domain.State as DS
 import Domain.Types (PurchaseName(..))
 import Effect.Aff.Class (class MonadAff, liftAff)
+import Effect.Class (liftEffect)
+import FFI.WebSocket as WS
 import Halogen as H
 import Halogen.HTML as HH
 import Halogen.HTML.Events as HE
 import Halogen.HTML.Properties as HP
+import Halogen.Subscription as HS
+import Keri.Event (eventDigest)
 import Protocol.Client as Client
 import Protocol.Message as Msg
 import Type.Proxy (Proxy(..))
@@ -31,8 +39,10 @@ type State =
   , identity :: Maybe Identity
   , groupId :: Maybe String
   , groupState :: DS.GroupState
-  , sequenceNumber :: Int
+  , keriSeqNo :: Int
   , priorDigest :: String
+  , serverSeqNo :: Int
+  , ws :: Maybe WS.WebSocket
   , newGroupInput :: String
   , newPurchaseInput :: String
   , error :: Maybe String
@@ -51,6 +61,7 @@ data Action
   | OpenNewPurchase
   | SubmitEvent DomainEvent
   | Navigate Screen
+  | EventReceived String
 
 type Slots =
   ( identity :: H.Slot (Const Void) Identity.Output Unit
@@ -74,8 +85,10 @@ initialState =
   , identity: Nothing
   , groupId: Nothing
   , groupState: DS.emptyState
-  , sequenceNumber: 0
+  , keriSeqNo: 0
   , priorDigest: ""
+  , serverSeqNo: 0
+  , ws: Nothing
   , newGroupInput: ""
   , newPurchaseInput: ""
   , error: Nothing
@@ -182,13 +195,42 @@ handleAction = case _ of
 
   CreateGroup -> do
     H.modify_ _ { error = Nothing }
-    result <- liftAff $ Client.createGroup baseUrl
-    H.modify_ _ { groupId = Just result, groupState = DS.emptyState }
+    groupId <- liftAff $ Client.createGroup baseUrl
+    H.modify_ _
+      { groupId = Just groupId
+      , groupState = DS.emptyState
+      , serverSeqNo = 0
+      }
+    startWebSocket groupId
 
   JoinGroup -> do
     st <- H.get
     when (st.newGroupInput /= "") do
-      H.modify_ _ { groupId = Just st.newGroupInput, newGroupInput = "", error = Nothing }
+      let groupId = st.newGroupInput
+      H.modify_ _
+        { groupId = Just groupId
+        , newGroupInput = ""
+        , error = Nothing
+        , groupState = DS.emptyState
+        , serverSeqNo = 0
+        }
+      -- Fetch all existing events and replay them
+      events <- liftAff $ Client.fetchEvents baseUrl groupId (-1)
+      let
+        applyFetched acc ev = case Msg.deserializeSignedEvent ev.payload of
+          Left _ -> acc { lastSeq = ev.seq }
+          Right signed -> acc
+            { groupState = DS.applySignedEvent signed acc.groupState
+            , lastSeq = ev.seq
+            }
+        result = foldl applyFetched
+          { groupState: DS.emptyState, lastSeq: -1 }
+          events
+      H.modify_ _
+        { groupState = result.groupState
+        , serverSeqNo = result.lastSeq + 1
+        }
+      startWebSocket groupId
 
   OpenNewPurchase -> do
     st <- H.get
@@ -199,11 +241,11 @@ handleAction = case _ of
   SubmitEvent ev -> do
     st <- H.get
     case st.identity, st.groupId of
-      Just ident, Just _ -> do
+      Just ident, Just groupId -> do
         case
           Msg.mkGroupMessage
             { prefix: ident.prefix
-            , sequenceNumber: st.sequenceNumber
+            , sequenceNumber: st.keriSeqNo
             , priorDigest: st.priorDigest
             , secretKey: ident.keyPair
             , keyIndex: 0
@@ -214,21 +256,63 @@ handleAction = case _ of
             H.modify_ _ { error = Just ("Sign failed: " <> err) }
           Right msg -> do
             let
-              payload = serializeDomainEvent ev
               signed = Msg.extractSignedEvent msg
+              payload = Msg.serializeSignedEvent signed
               newState = DS.applySignedEvent signed st.groupState
+              newDigest = eventDigest msg.keriEvent.event
             H.modify_ _
               { groupState = newState
-              , sequenceNumber = st.sequenceNumber + 1
+              , keriSeqNo = st.keriSeqNo + 1
+              , priorDigest = newDigest
               , error = Nothing
               }
-            -- Send to server (fire-and-forget, log errors)
-            case st.groupId of
-              Just groupId -> liftAff do
-                _ <- Client.appendEvent baseUrl groupId st.sequenceNumber payload
-                pure unit
-              Nothing -> pure unit
+            serverSeq <- liftAff $
+              Client.appendEvent baseUrl groupId st.serverSeqNo payload
+            H.modify_ _ { serverSeqNo = serverSeq + 1 }
       _, _ ->
         H.modify_ _ { error = Just "No identity or group" }
 
   Navigate screen -> H.modify_ _ { screen = screen }
+
+  EventReceived msgStr -> do
+    st <- H.get
+    case st.identity of
+      Nothing -> pure unit
+      Just ident ->
+        case parseWsMessage msgStr of
+          Left err ->
+            H.modify_ _ { error = Just ("WS parse error: " <> err) }
+          Right { seq: serverSeq, payload } ->
+            case Msg.deserializeSignedEvent payload of
+              Left err ->
+                H.modify_ _ { error = Just ("Deserialize error: " <> err) }
+              Right signed ->
+                if signed.signer == ident.memberId then
+                  H.modify_ _ { serverSeqNo = serverSeq + 1 }
+                else do
+                  let newState = DS.applySignedEvent signed st.groupState
+                  H.modify_ _ { groupState = newState, serverSeqNo = serverSeq + 1 }
+
+-- | Open a WebSocket subscription for the current group.
+startWebSocket
+  :: forall o m
+   . MonadAff m
+  => String
+  -> H.HalogenM State Action Slots o m Unit
+startWebSocket groupId = do
+  wsUrl <- liftEffect Client.getWsUrl
+  { emitter, listener } <- liftEffect HS.create
+  void $ H.subscribe emitter
+  ws <- liftEffect $ Client.subscribeGroup wsUrl groupId \msg ->
+    HS.notify listener (EventReceived msg)
+  H.modify_ _ { ws = Just ws }
+
+-- | Parse a WebSocket event message: @{ "seq": N, "payload": "..." }@
+parseWsMessage :: String -> Either String { seq :: Int, payload :: String }
+parseWsMessage s = do
+  json <- lmap show (jsonParser s)
+  lmap printJsonDecodeError do
+    obj <- decodeJson json
+    seq <- obj .: "seq"
+    payload <- obj .: "payload"
+    pure { seq, payload }
