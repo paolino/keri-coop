@@ -22,6 +22,9 @@ package:
     - arraybuffer-types
     - nullable
     - identity
+    - exceptions
+    - newtype
+    - control
   bundle:
     module: Main
     outfile: dist/index.js
