@@ -1,0 +1,68 @@
+cabal-version:   3.0
+name:            keri-coop
+version:         0.1.0.0
+synopsis:        KERI-based collective purchasing server
+description:
+  A solidarity purchasing group (GAS) server using KERI for
+  identity and signing. Serves both API and static frontend.
+
+license:         Apache-2.0
+license-file:    LICENSE
+copyright:       (c) 2026 Paolo Veronelli
+author:          Paolo Veronelli
+maintainer:      paolo.veronelli@gmail.com
+category:        Web
+build-type:      Simple
+extra-doc-files: README.md
+
+common language
+  default-language:   GHC2021
+  default-extensions:
+    DerivingStrategies
+    LambdaCase
+    OverloadedStrings
+    RecordWildCards
+    StrictData
+
+common opts-lib
+  ghc-options:
+    -Wall -Werror -Wunused-imports -Wunused-packages
+    -Wmissing-export-lists -Wname-shadowing -Wredundant-constraints
+
+common opts-exe
+  ghc-options:
+    -Wall -Werror -Wunused-imports -Wunused-packages
+    -Wmissing-export-lists -threaded -rtsopts -with-rtsopts=-N
+
+library
+  import:          language, opts-lib
+  hs-source-dirs:  lib
+  exposed-modules:
+    KeriCoop.Server
+    KeriCoop.Server.Api
+    KeriCoop.Server.Database
+    KeriCoop.Server.WebSocket
+
+  build-depends:
+    , aeson           >=2.1  && <2.3
+    , base            >=4.18 && <5
+    , bytestring      >=0.11 && <0.13
+    , containers      >=0.6  && <0.8
+    , http-types      >=0.12 && <0.13
+    , sqlite-simple   >=0.4  && <0.5
+    , stm             >=2.5  && <2.6
+    , text            >=2.0  && <2.2
+    , wai             >=3.2  && <3.3
+    , wai-app-static  >=3.1  && <3.2
+    , wai-websockets  >=3.0  && <3.1
+    , warp            >=3.3  && <3.5
+    , websockets      >=0.12 && <0.14
+
+executable keri-coop-server
+  import:         language, opts-exe
+  hs-source-dirs: app
+  main-is:        Main.hs
+  build-depends:
+    , base
+    , keri-coop
+    , optparse-applicative  >=0.17 && <0.19
