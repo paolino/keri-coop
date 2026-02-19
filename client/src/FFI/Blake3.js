@@ -1,3 +1,3 @@
-import { hash } from "blake3/browser";
+import blakejs from "blakejs";
 
-export const hashImpl = (bytes) => hash(bytes);
+export const hashImpl = (bytes) => new Uint8Array(blakejs.blake2b(bytes, null, 32));
