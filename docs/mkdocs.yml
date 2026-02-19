@@ -1,0 +1,15 @@
+site_name: keri-coop
+site_url: https://paolino.github.io/keri-coop/
+repo_url: https://github.com/paolino/keri-coop
+repo_name: paolino/keri-coop
+
+theme:
+  name: material
+  palette:
+    scheme: slate
+    primary: teal
+
+nav:
+  - Home: index.md
+  - Architecture: architecture.md
+  - Domain: domain.md
