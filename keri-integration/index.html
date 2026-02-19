@@ -1,0 +1,972 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://paolino.github.io/keri-coop/keri-integration/">
+      
+      
+        <link rel="prev" href="../keri-protocol/">
+      
+      
+      
+        
+          <link rel="alternate" href="./" hreflang="en">
+        
+          <link rel="alternate" href="../it/keri-integration/" hreflang="it">
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.2">
+    
+    
+      
+        <title>KERI Integration - keri-coop</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#keri-integration" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="keri-coop" class="md-header__button md-logo" aria-label="keri-coop" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            keri-coop
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              KERI Integration
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../it/keri-integration/" hreflang="it" class="md-select__link">
+              Italiano
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/paolino/keri-coop" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    paolino/keri-coop
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="keri-coop" class="md-nav__button md-logo" aria-label="keri-coop" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    keri-coop
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/paolino/keri-coop" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    paolino/keri-coop
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../domain/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domain
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../keri-protocol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KERI Protocol
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KERI Integration
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KERI Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#identity-keri-aid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Identity = KERI AID
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#domain-events-as-keri-interaction-anchors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Domain events as KERI interaction anchors
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#two-event-logs-two-purposes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Two event logs, two purposes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verification-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verification flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#role-authorization-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Role authorization matrix
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bootstrap-from-keri-inception-to-first-admin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bootstrap: from KERI inception to first admin
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-rotation-and-domain-continuity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key rotation and domain continuity
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#event-flow-complete-purchase-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Event flow: complete purchase lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transport-server-as-dumb-relay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Transport: server as dumb relay
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#identity-keri-aid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Identity = KERI AID
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#domain-events-as-keri-interaction-anchors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Domain events as KERI interaction anchors
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#two-event-logs-two-purposes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Two event logs, two purposes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verification-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verification flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#role-authorization-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Role authorization matrix
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bootstrap-from-keri-inception-to-first-admin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bootstrap: from KERI inception to first admin
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-rotation-and-domain-continuity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key rotation and domain continuity
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#event-flow-complete-purchase-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Event flow: complete purchase lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transport-server-as-dumb-relay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Transport: server as dumb relay
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="keri-integration">KERI Integration</h1>
+<p>How keri-coop maps its cooperative purchasing domain onto KERI primitives.</p>
+<hr />
+<h2 id="identity-keri-aid">Identity = KERI AID</h2>
+<p>Every member is identified by their <strong>Autonomic Identifier</strong> (AID), derived
+from their Ed25519 public key via Blake3 hashing and CESR encoding. There is
+no username/password — the AID <em>is</em> the identity.</p>
+<pre class="mermaid"><code>flowchart LR
+    KP["Ed25519 Key Pair&lt;br&gt;(generated in browser)"]
+    H["Blake3(pub_key)"]
+    AID["AID Prefix&lt;br&gt;CESR-encoded"]
+    MID["MemberId&lt;br&gt;= AID"]
+
+    KP --&gt; H --&gt; AID --&gt; MID</code></pre>
+<p>The <code>MemberId</code> type is a newtype over <code>AID</code>:</p>
+<div class="highlight"><pre><span></span><code>newtype AID = AID String        -- CESR-encoded prefix
+newtype MemberId = MemberId AID -- domain alias
+</code></pre></div>
+<hr />
+<h2 id="domain-events-as-keri-interaction-anchors">Domain events as KERI interaction anchors</h2>
+<p>Every domain action (vote, deposit, purchase, etc.) is wrapped in a KERI
+<strong>interaction event</strong> (<code>ixn</code>). The domain event is canonically serialized to
+JSON and placed in the <code>anchors</code> field of the <code>ixn</code>. The <code>ixn</code> is then
+signed with the member's current private key and appended to the group log.</p>
+<pre class="mermaid"><code>flowchart TD
+    DE["Domain Event&lt;br&gt;e.g. VoteRegisterMember 'Alice'"]
+    CJ["Canonical JSON&lt;br&gt;{'name':'Alice','t':'VoteRegisterMember'}"]
+    IXN["KERI ixn Event&lt;br&gt;prefix: signer AID&lt;br&gt;sn: next seq number&lt;br&gt;p: prior event digest&lt;br&gt;a: [canonical JSON]"]
+    SIG["Ed25519 Signature&lt;br&gt;over serialized ixn"]
+    GM["GroupMessage&lt;br&gt;{ keriEvent, domainEvent }"]
+
+    DE --&gt; CJ --&gt; IXN --&gt; SIG --&gt; GM</code></pre>
+<p>This is implemented in <code>Protocol.Message.mkGroupMessage</code>:</p>
+<ol>
+<li>Serialize the <code>DomainEvent</code> to canonical JSON (deterministic field order)</li>
+<li>Create a KERI <code>ixn</code> with the JSON as an anchor</li>
+<li>Compute the SAID (self-addressing identifier) of the <code>ixn</code></li>
+<li>Sign the serialized <code>ixn</code> with the member's Ed25519 secret key</li>
+<li>Package as a <code>GroupMessage</code> for transport</li>
+</ol>
+<hr />
+<h2 id="two-event-logs-two-purposes">Two event logs, two purposes</h2>
+<p>keri-coop maintains two conceptual logs that serve different purposes:</p>
+<pre class="mermaid"><code>flowchart LR
+    subgraph KERI["KERI Layer (per member)"]
+        KEL["Key Event Log&lt;br&gt;icp → ixn → rot → ixn → ..."]
+        KS["Key State&lt;br&gt;current keys, thresholds,&lt;br&gt;pre-rotation commitments"]
+        KEL --&gt; KS
+    end
+
+    subgraph Domain["Domain Layer (per group)"]
+        GL["Group Log&lt;br&gt;Sequence of signed domain events"]
+        GS["Group State&lt;br&gt;members, balances,&lt;br&gt;purchases, votes"]
+        GL --&gt; GS
+    end
+
+    KEL -.-&gt;|"ixn anchors&lt;br&gt;domain events"| GL
+    KS -.-&gt;|"signature&lt;br&gt;verification"| GL</code></pre>
+<table>
+<thead>
+<tr>
+<th>Log</th>
+<th>Scope</th>
+<th>Purpose</th>
+<th>Events</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>KEL</strong></td>
+<td>Per member</td>
+<td>Key management, identity</td>
+<td><code>icp</code>, <code>rot</code>, <code>ixn</code></td>
+</tr>
+<tr>
+<td><strong>Group Log</strong></td>
+<td>Per group</td>
+<td>Domain state</td>
+<td>Signed domain events anchored in <code>ixn</code>s</td>
+</tr>
+</tbody>
+</table>
+<p>The KEL tracks <em>who controls which keys</em>. The group log tracks <em>what happened
+in the cooperative</em>. They are linked: every group log entry is a KERI <code>ixn</code>
+whose signature is verified against the signer's current key state.</p>
+<hr />
+<h2 id="verification-flow">Verification flow</h2>
+<p>When a <code>GroupMessage</code> arrives (via HTTP or WebSocket), the client verifies it
+in two layers before applying it to the domain state:</p>
+<pre class="mermaid"><code>sequenceDiagram
+    participant S as Server
+    participant C as Client
+    participant KV as KERI Verifier
+    participant DV as Domain Validator
+
+    S-&gt;&gt;C: GroupMessage { keriEvent, domainEvent }
+
+    C-&gt;&gt;KV: Verify ixn signature
+    Note over KV: 1. Look up signer's KeyState&lt;br&gt;2. Verify Ed25519 signature&lt;br&gt;3. Check signing threshold&lt;br&gt;4. Validate hash chain (sn, prior digest)
+    KV--&gt;&gt;C: signature valid
+
+    C-&gt;&gt;DV: Validate domain event
+    Note over DV: 1. Extract signer AID → MemberId&lt;br&gt;2. Check authorization&lt;br&gt;(admin? referente? cassiere?)&lt;br&gt;3. Check preconditions&lt;br&gt;(balance, purchase open, etc.)
+    DV--&gt;&gt;C: event authorized
+
+    C-&gt;&gt;C: Apply to GroupState</code></pre>
+<hr />
+<h2 id="role-authorization-matrix">Role authorization matrix</h2>
+<p>Domain events require specific KERI-authenticated roles. The signer's AID
+determines their <code>MemberId</code>, which is checked against the current <code>GroupState</code>:</p>
+<pre class="mermaid"><code>flowchart TD
+    subgraph Roles["Roles (derived from GroupState)"]
+        Admin["Admin&lt;br&gt;= Referente ∪ Cassiere"]
+        Ref["Referente"]
+        Cas["Cassiere"]
+        Mem["Member"]
+    end
+
+    subgraph Gov["Governance Events"]
+        VR["VoteRegisterMember"]
+        VRM["VoteRemoveMember"]
+        VER["VoteElect/RevokeReferente"]
+        VEC["VoteElect/RevokeCassiere"]
+    end
+
+    subgraph Econ["Economic Events"]
+        Dep["Deposit"]
+        Wit["Withdraw"]
+    end
+
+    subgraph Purch["Purchase Events"]
+        OP["OpenPurchase"]
+        AC["Approve/RejectCommitment"]
+        CP["ClosePurchase / FailPurchase"]
+        Com["Commit"]
+        VCP["VoteClose/FailPurchase"]
+    end
+
+    Admin --&gt; Gov
+    Cas --&gt; Econ
+    Ref --&gt; OP
+    Ref --&gt; AC
+    Ref --&gt; CP
+    Mem --&gt; Com
+    Admin --&gt; VCP</code></pre>
+<table>
+<thead>
+<tr>
+<th>Required role</th>
+<th>Domain events</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Admin</strong></td>
+<td><code>VoteRegisterMember</code>, <code>VoteRemoveMember</code>, <code>VoteElect*</code>, <code>VoteRevoke*</code>, <code>VoteClosePurchase</code>, <code>VoteFailPurchase</code></td>
+</tr>
+<tr>
+<td><strong>Cassiere</strong></td>
+<td><code>Deposit</code>, <code>Withdraw</code></td>
+</tr>
+<tr>
+<td><strong>Referente</strong></td>
+<td><code>OpenPurchase</code>, <code>Approve/RejectCommitment</code>, <code>AdjustCommitment</code>, <code>ClosePurchase</code>, <code>FailPurchase</code></td>
+</tr>
+<tr>
+<td><strong>Member</strong></td>
+<td><code>Commit</code> (self only, requires sufficient balance)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="bootstrap-from-keri-inception-to-first-admin">Bootstrap: from KERI inception to first admin</h2>
+<p>A new group starts with a single member who creates a KERI identity
+(inception) and then becomes both referente and cassiere:</p>
+<pre class="mermaid"><code>sequenceDiagram
+    participant B as Browser
+    participant K as KERI Module
+    participant S as Server
+
+    Note over B: User clicks "Create Group"
+
+    B-&gt;&gt;K: Generate Ed25519 key pair
+    K--&gt;&gt;B: { publicKey, secretKey }
+
+    B-&gt;&gt;K: Create inception event (icp)
+    Note over K: prefix = Blake3(pubKey)&lt;br&gt;nextKeys = [H(next_pub)]&lt;br&gt;threshold = 1
+
+    B-&gt;&gt;K: Create ixn: VoteRegisterMember "founder"
+    Note over K: Anchors domain event&lt;br&gt;Signed by inception key
+
+    B-&gt;&gt;S: POST /api/groups (create group)
+    B-&gt;&gt;S: POST /api/groups/:id/events (icp + ixn)
+
+    Note over S: Group created with founder&lt;br&gt;as sole member, referente,&lt;br&gt;and cassiere</code></pre>
+<p>Since the founder is the only admin at bootstrap, their single vote
+immediately reaches quorum (<code>&gt;= (1+1)/2 = 1</code>) for all governance actions.</p>
+<hr />
+<h2 id="key-rotation-and-domain-continuity">Key rotation and domain continuity</h2>
+<p>When a member rotates their KERI keys, their AID (and thus <code>MemberId</code>) stays
+the same — only the controlling keys change. The domain state is unaffected:</p>
+<pre class="mermaid"><code>sequenceDiagram
+    participant M as Member (AID: EKpN...)
+    participant K as KEL
+    participant G as Group Log
+
+    Note over K: Current state:&lt;br&gt;keys = [pub_key_0]&lt;br&gt;next = [H(pub_key_1)]
+
+    M-&gt;&gt;K: rot event (reveal pub_key_1, commit H(pub_key_2))
+    Note over K: New state:&lt;br&gt;keys = [pub_key_1]&lt;br&gt;next = [H(pub_key_2)]
+
+    M-&gt;&gt;G: ixn: Deposit member_X 5000
+    Note over G: Signed with pub_key_1&lt;br&gt;Verified against updated KeyState&lt;br&gt;AID unchanged → MemberId unchanged</code></pre>
+<p>This means a member can rotate keys (e.g. after a suspected compromise)
+without losing their role, balance, or purchase history.</p>
+<hr />
+<h2 id="event-flow-complete-purchase-lifecycle">Event flow: complete purchase lifecycle</h2>
+<p>A full purchase cycle showing both KERI and domain layers:</p>
+<pre class="mermaid"><code>sequenceDiagram
+    participant Cas as Cassiere
+    participant Ref as Referente
+    participant Mem as Member
+    participant Log as Group Log
+
+    Note over Cas: Each arrow is a KERI ixn&lt;br&gt;anchoring a domain event
+
+    Cas-&gt;&gt;Log: ixn: Deposit(member, 10000)
+    Note over Log: member.balance += 10000
+
+    Ref-&gt;&gt;Log: ixn: OpenPurchase("Olive Oil")
+    Note over Log: purchase created&lt;br&gt;pid = SAID of this ixn
+
+    Mem-&gt;&gt;Log: ixn: Commit(member, 3000, pid)
+    Note over Log: member.balance -= 3000&lt;br&gt;commitment = Pending
+
+    Ref-&gt;&gt;Log: ixn: ApproveCommitment(member, pid)
+    Note over Log: commitment = Approved
+
+    Cas-&gt;&gt;Log: ixn: VoteClosePurchase(pid)
+    Ref-&gt;&gt;Log: ixn: VoteClosePurchase(pid)
+    Note over Log: 2/2 admins voted → quorum reached
+
+    Ref-&gt;&gt;Log: ixn: ClosePurchase(pid)
+    Note over Log: purchase.phase = Closed</code></pre>
+<p>Every step is a KERI <code>ixn</code> event: cryptographically signed, hash-chained,
+and independently verifiable by any client.</p>
+<hr />
+<h2 id="transport-server-as-dumb-relay">Transport: server as dumb relay</h2>
+<p>The Haskell server never interprets domain events. It stores and forwards
+signed KERI events:</p>
+<pre class="mermaid"><code>flowchart LR
+    subgraph Client["Browser (PureScript)"]
+        KERI["KERI Module&lt;br&gt;Sign / Verify"]
+        DOM["Domain Module&lt;br&gt;Validate / Apply"]
+        UI["Halogen UI"]
+        KERI &lt;--&gt; DOM &lt;--&gt; UI
+    end
+
+    subgraph Server["Haskell Server"]
+        API["HTTP API&lt;br&gt;append / fetch"]
+        DB["SQLite&lt;br&gt;(group_id, seq, payload)"]
+        WS["WebSocket&lt;br&gt;real-time push"]
+        API &lt;--&gt; DB
+        DB --&gt; WS
+    end
+
+    Client &lt;--&gt;|"signed ixn events&lt;br&gt;(opaque to server)"| Server</code></pre>
+<p>The server enforces only:</p>
+<ul>
+<li><strong>Sequence ordering</strong> — 409 Conflict on duplicate <code>seq</code></li>
+<li><strong>Append-only</strong> — no updates or deletes</li>
+</ul>
+<p>All cryptographic verification and domain validation happen client-side.
+A compromised server cannot forge events — it can only withhold them.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../javascripts/mermaid.mjs" type="module"></script>
+      
+    
+  </body>
+</html>

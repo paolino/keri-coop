@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <url>
+        <loc>https://paolino.github.io/keri-coop/</loc>
+        <lastmod>2026-02-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://paolino.github.io/keri-coop/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://paolino.github.io/keri-coop/it/"/>
+    </url>
+    <url>
+        <loc>https://paolino.github.io/keri-coop/architecture/</loc>
+        <lastmod>2026-02-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://paolino.github.io/keri-coop/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://paolino.github.io/keri-coop/it/architecture/"/>
+    </url>
+    <url>
+        <loc>https://paolino.github.io/keri-coop/domain/</loc>
+        <lastmod>2026-02-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://paolino.github.io/keri-coop/domain/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://paolino.github.io/keri-coop/it/domain/"/>
+    </url>
+    <url>
+        <loc>https://paolino.github.io/keri-coop/keri-integration/</loc>
+        <lastmod>2026-02-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://paolino.github.io/keri-coop/keri-integration/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://paolino.github.io/keri-coop/it/keri-integration/"/>
+    </url>
+    <url>
+        <loc>https://paolino.github.io/keri-coop/keri-protocol/</loc>
+        <lastmod>2026-02-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://paolino.github.io/keri-coop/keri-protocol/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://paolino.github.io/keri-coop/it/keri-protocol/"/>
+    </url>
+    <url>
+        <loc>https://paolino.github.io/keri-coop/it/</loc>
+        <lastmod>2026-02-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="it" href="https://paolino.github.io/keri-coop/it/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://paolino.github.io/keri-coop/"/>
+    </url>
+    <url>
+        <loc>https://paolino.github.io/keri-coop/it/architecture/</loc>
+        <lastmod>2026-02-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="it" href="https://paolino.github.io/keri-coop/it/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://paolino.github.io/keri-coop/architecture/"/>
+    </url>
+    <url>
+        <loc>https://paolino.github.io/keri-coop/it/domain/</loc>
+        <lastmod>2026-02-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="it" href="https://paolino.github.io/keri-coop/it/domain/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://paolino.github.io/keri-coop/domain/"/>
+    </url>
+    <url>
+        <loc>https://paolino.github.io/keri-coop/it/keri-integration/</loc>
+        <lastmod>2026-02-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="it" href="https://paolino.github.io/keri-coop/it/keri-integration/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://paolino.github.io/keri-coop/keri-integration/"/>
+    </url>
+    <url>
+        <loc>https://paolino.github.io/keri-coop/it/keri-protocol/</loc>
+        <lastmod>2026-02-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="it" href="https://paolino.github.io/keri-coop/it/keri-protocol/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://paolino.github.io/keri-coop/keri-protocol/"/>
+    </url>
+</urlset>

@@ -1,0 +1,2032 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://paolino.github.io/keri-coop/keri-protocol/">
+      
+      
+        <link rel="prev" href="../domain/">
+      
+      
+        <link rel="next" href="../keri-integration/">
+      
+      
+        
+          <link rel="alternate" href="./" hreflang="en">
+        
+          <link rel="alternate" href="../it/keri-protocol/" hreflang="it">
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.2">
+    
+    
+      
+        <title>KERI Protocol - keri-coop</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#keri-protocol-a-deep-introduction" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="keri-coop" class="md-header__button md-logo" aria-label="keri-coop" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            keri-coop
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              KERI Protocol
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../it/keri-protocol/" hreflang="it" class="md-select__link">
+              Italiano
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/paolino/keri-coop" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    paolino/keri-coop
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="keri-coop" class="md-nav__button md-logo" aria-label="keri-coop" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    keri-coop
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/paolino/keri-coop" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    paolino/keri-coop
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../domain/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domain
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KERI Protocol
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KERI Protocol
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-motivation-and-design-philosophy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Motivation and Design Philosophy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-core-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Core Concepts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Core Concepts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-autonomic-identifier-aid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Autonomic Identifier (AID)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-pre-rotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Pre-rotation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-establishment-vs-non-establishment-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Establishment vs Non-establishment Events
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-key-event-log-kel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Key Event Log (KEL)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Key Event Log (KEL)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kel-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        KEL Verification
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-event-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Event Types
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Event Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#icp-inception" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        icp — Inception
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rot-rotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        rot — Rotation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ixn-interaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ixn — Interaction
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dip-delegated-inception" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        dip — Delegated Inception
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drt-delegated-rotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        drt — Delegated Rotation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-key-management-and-rotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Key Management and Rotation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Key Management and Rotation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#thresholds-and-multisig" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Thresholds and Multisig
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-compromise-recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Compromise Recovery
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#partial-rotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Partial Rotation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-witnesses-and-watchers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Witnesses and Watchers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Witnesses and Watchers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#witnesses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Witnesses
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#watchers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Watchers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-delegation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Delegation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-duplicity-detection-and-the-keri-security-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Duplicity Detection and the KERI Security Model
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Duplicity Detection and the KERI Security Model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-duplicity-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Duplicity Problem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#duplicity-is-detectable-not-preventable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Duplicity is Detectable, Not Preventable
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-keri-security-assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The KERI Security Assumptions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-trust-hierarchy-without-a-ledger" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Trust Hierarchy Without a Ledger
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-keri-vs-other-did-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. KERI vs Other DID Methods
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-acdc-authentic-chained-data-containers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. ACDC: Authentic Chained Data Containers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-implementation-landscape" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Implementation Landscape
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Implementation Landscape">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reference-implementations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reference Implementations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cesr-composable-event-streaming-representation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CESR: Composable Event Streaming Representation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gleif-and-vlei" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GLEIF and vLEI
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-strengths-and-tradeoffs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Strengths and Tradeoffs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. Strengths and Tradeoffs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#strengths" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strengths
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tradeoffs-and-challenges" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tradeoffs and Challenges
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-quick-reference-glossary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Quick Reference Glossary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#further-reading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Further Reading
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../keri-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KERI Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-motivation-and-design-philosophy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Motivation and Design Philosophy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-core-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Core Concepts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Core Concepts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-autonomic-identifier-aid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Autonomic Identifier (AID)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-pre-rotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Pre-rotation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-establishment-vs-non-establishment-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Establishment vs Non-establishment Events
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-key-event-log-kel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Key Event Log (KEL)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Key Event Log (KEL)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kel-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        KEL Verification
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-event-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Event Types
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Event Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#icp-inception" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        icp — Inception
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rot-rotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        rot — Rotation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ixn-interaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ixn — Interaction
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dip-delegated-inception" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        dip — Delegated Inception
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drt-delegated-rotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        drt — Delegated Rotation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-key-management-and-rotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Key Management and Rotation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Key Management and Rotation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#thresholds-and-multisig" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Thresholds and Multisig
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-compromise-recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Compromise Recovery
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#partial-rotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Partial Rotation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-witnesses-and-watchers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Witnesses and Watchers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Witnesses and Watchers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#witnesses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Witnesses
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#watchers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Watchers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-delegation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Delegation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-duplicity-detection-and-the-keri-security-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Duplicity Detection and the KERI Security Model
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Duplicity Detection and the KERI Security Model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-duplicity-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Duplicity Problem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#duplicity-is-detectable-not-preventable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Duplicity is Detectable, Not Preventable
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-keri-security-assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The KERI Security Assumptions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-trust-hierarchy-without-a-ledger" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Trust Hierarchy Without a Ledger
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-keri-vs-other-did-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. KERI vs Other DID Methods
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-acdc-authentic-chained-data-containers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. ACDC: Authentic Chained Data Containers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-implementation-landscape" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Implementation Landscape
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Implementation Landscape">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reference-implementations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reference Implementations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cesr-composable-event-streaming-representation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CESR: Composable Event Streaming Representation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gleif-and-vlei" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GLEIF and vLEI
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-strengths-and-tradeoffs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Strengths and Tradeoffs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. Strengths and Tradeoffs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#strengths" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strengths
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tradeoffs-and-challenges" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tradeoffs and Challenges
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-quick-reference-glossary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Quick Reference Glossary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#further-reading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Further Reading
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="keri-protocol-a-deep-introduction">KERI Protocol: A Deep Introduction</h1>
+<blockquote>
+<p><strong>Key Event Receipt Infrastructure</strong> — a decentralized identity protocol built on cryptographic autonomy, portability, and verifiability without dependence on any ledger or registry.</p>
+</blockquote>
+<hr />
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#1-motivation-and-design-philosophy">Motivation and Design Philosophy</a></li>
+<li><a href="#2-core-concepts">Core Concepts</a></li>
+<li><a href="#3-key-event-log-kel">Key Event Log (KEL)</a></li>
+<li><a href="#4-event-types">Event Types</a></li>
+<li><a href="#5-key-management-and-rotation">Key Management and Rotation</a></li>
+<li><a href="#6-witnesses-and-watchers">Witnesses and Watchers</a></li>
+<li><a href="#7-delegation">Delegation</a></li>
+<li><a href="#8-duplicity-detection-and-the-keri-security-model">Duplicity Detection and the KERI Security Model</a></li>
+<li><a href="#9-trust-hierarchy-without-a-ledger">Trust Hierarchy Without a Ledger</a></li>
+<li><a href="#10-keri-vs-other-did-methods">KERI vs Other DID Methods</a></li>
+<li><a href="#11-acdc-authentic-chained-data-containers">ACDC: Authentic Chained Data Containers</a></li>
+<li><a href="#12-implementation-landscape">Implementation Landscape</a></li>
+<li><a href="#13-strengths-and-tradeoffs">Strengths and Tradeoffs</a></li>
+<li><a href="#14-quick-reference-glossary">Quick Reference Glossary</a></li>
+</ol>
+<hr />
+<h2 id="1-motivation-and-design-philosophy">1. Motivation and Design Philosophy</h2>
+<p>KERI was created by Samuel M. Smith (Ph.D.) and first published in a 2019 white paper. The fundamental problem it addresses is: <strong>how can an entity control its own cryptographic identifier without depending on any external registry, blockchain, or certificate authority?</strong></p>
+<p>Traditional PKI ties identity to a CA-signed certificate. Blockchain-based DID methods (did:ethr, did:ion, etc.) tie identity to a specific ledger. Both approaches introduce <strong>infrastructure dependency</strong> — the identity is only as portable and available as the underlying infrastructure allows.</p>
+<p>KERI's design principles are:</p>
+<ul>
+<li><strong>Self-certifying identifiers (SCIs)</strong>: the identifier itself is derived from the public key, so no external authority is needed to bind key to identity.</li>
+<li><strong>Cryptographic autonomy</strong>: the controller always retains the ability to prove control through private key possession.</li>
+<li><strong>Portability</strong>: a KERI identifier and its Key Event Log can be replicated anywhere; no single infrastructure point of failure.</li>
+<li><strong>Minimal sufficient means</strong>: avoid complexity; use only what is necessary to achieve security goals.</li>
+<li><strong>End-verifiability</strong>: any verifier can independently validate the entire history of an identifier by replaying the Key Event Log.</li>
+</ul>
+<p>KERI is not a blockchain, not a DID method (though it can be expressed as one: <code>did:keri</code>), and not a credential format — it is a <strong>foundational identity layer</strong> upon which all of these can be built.</p>
+<hr />
+<h2 id="2-core-concepts">2. Core Concepts</h2>
+<h3 id="21-autonomic-identifier-aid">2.1 Autonomic Identifier (AID)</h3>
+<p>An <strong>Autonomic Identifier (AID)</strong> is a self-certifying identifier. It is derived directly from a public key (or a commitment to a set of keys in the multisig case):</p>
+<div class="highlight"><pre><span></span><code>AID = Base64URL( Blake3( public_key ) )   # simplified
+</code></pre></div>
+<p>More precisely, the AID is derived from the <strong>inception key digest</strong> — a cryptographic hash of the initial controlling public key(s). This creates a permanent, unforgeable binding between the identifier and its controlling key material <strong>at inception</strong>.</p>
+<p>No registry, DNS, or blockchain is consulted to verify this binding. The math alone is sufficient.</p>
+<pre class="mermaid"><code>flowchart TD
+    K1["Inception Key Pair&lt;br&gt;pub_key_0, priv_key_0"]
+    H["Hash(pub_key_0)&lt;br&gt;Blake3 / SHA3-256"]
+    AID["AID Prefix&lt;br&gt;Base64URL(hash)&lt;br&gt;e.g. EKpNx3NqKFPSGF9..."]
+    SIGN["Sign events with&lt;br&gt;priv_key_0"]
+    VERIFY["Anyone can verify:&lt;br&gt;Hash(pub_key_0) == AID prefix&lt;br&gt;No CA needed"]
+
+    K1 --&gt; H --&gt; AID
+    K1 --&gt; SIGN
+    AID --&gt; VERIFY</code></pre>
+<h3 id="22-pre-rotation">2.2 Pre-rotation</h3>
+<p>KERI's most important innovation is <strong>pre-rotation</strong>: at inception (and at each rotation), the controller commits to the <em>digest</em> of the <em>next</em> set of keys — before those keys are ever used or revealed.</p>
+<div class="highlight"><pre><span></span><code>Inception event:
+  keys:      [current_pub_key_1, ...]
+  next_keys: [hash(next_pub_key_1), ...]   &lt;- commitment, not the key itself
+</code></pre></div>
+<p>This has a profound security implication: <strong>even if an attacker compromises your current private key, they cannot perform a valid rotation</strong> because they do not know the pre-committed next key, and cannot forge a valid digest preimage.</p>
+<p>Pre-rotation elevates KERI's security model above traditional PKI and even most blockchain DID methods.</p>
+<h3 id="23-establishment-vs-non-establishment-events">2.3 Establishment vs Non-establishment Events</h3>
+<p>KERI distinguishes two classes of events:</p>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Purpose</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Establishment</strong></td>
+<td>Change the key state</td>
+<td><code>icp</code>, <code>rot</code>, <code>dip</code>, <code>drt</code></td>
+</tr>
+<tr>
+<td><strong>Non-establishment</strong></td>
+<td>Anchor data / interact</td>
+<td><code>ixn</code></td>
+</tr>
+</tbody>
+</table>
+<p>Only establishment events change the authoritative key set. Non-establishment events (interactions) allow the controller to anchor arbitrary data (e.g., credential issuances, service endpoint changes) without rotating keys.</p>
+<hr />
+<h2 id="3-key-event-log-kel">3. Key Event Log (KEL)</h2>
+<p>The <strong>Key Event Log (KEL)</strong> is the authoritative, append-only, cryptographically-chained log of all key management events for an AID. It is the single source of truth for the current key state of an identifier.</p>
+<p>Each event in the KEL:</p>
+<ol>
+<li>Contains a <strong>sequence number</strong> (<code>sn</code>)</li>
+<li>Contains the <strong>digest of the prior event</strong> (<code>p</code>) — creating a hash chain</li>
+<li>Is <strong>signed</strong> by the current authoritative key set</li>
+<li>May reference a <strong>digest of the next key set</strong> (pre-rotation commitment)</li>
+</ol>
+<div class="highlight"><pre><span></span><code>Event_n:
+  v:   version string
+  t:   event type (icp | rot | ixn | ...)
+  d:   SAID (self-addressing identifier = digest of this event)
+  i:   AID (identifier prefix)
+  sn:  sequence number
+  p:   digest of prior event
+  kt:  signing threshold
+  k:   list of current public keys
+  nt:  next key threshold
+  n:   list of next key digests (pre-rotation)
+  bt:  backer threshold
+  b:   list of backers (witnesses)
+  c:   config traits
+  a:   anchored data (for ixn events)
+</code></pre></div>
+<p>The <strong>SAID</strong> (Self-Addressing IDentifier) is the digest of the event itself, computed after substituting a placeholder for the <code>d</code> field. This gives every event a globally unique, self-certifying identifier.</p>
+<p><strong>KEL hash chain — each event commits to the prior event's digest:</strong></p>
+<pre class="mermaid"><code>flowchart LR
+    icp["icp sn=0&lt;br&gt;p: null&lt;br&gt;k: pub_key_0&lt;br&gt;n: H(next_key_0)&lt;br&gt;signed: priv_key_0"]
+    ixn["ixn sn=1&lt;br&gt;p: SAID(icp)&lt;br&gt;a: anchor_data&lt;br&gt;signed: priv_key_0"]
+    rot["rot sn=2&lt;br&gt;p: SAID(ixn)&lt;br&gt;k: next_key_0 revealed&lt;br&gt;n: H(next_key_1)&lt;br&gt;signed: next_priv_key_0"]
+    ixn2["ixn sn=3&lt;br&gt;p: SAID(rot)&lt;br&gt;a: anchor_data&lt;br&gt;signed: next_priv_key_0"]
+
+    icp --&gt; ixn --&gt; rot --&gt; ixn2</code></pre>
+<h3 id="kel-verification">KEL Verification</h3>
+<p>To verify a KEL, a verifier:</p>
+<ol>
+<li>Validates the inception event: checks that the AID prefix matches the digest of the inception keys.</li>
+<li>For each subsequent event: checks the prior event digest, verifies signatures against the current key state, verifies threshold satisfaction.</li>
+<li>For each rotation: verifies that the new keys match the previously committed next key digests.</li>
+</ol>
+<p>This verification is fully <strong>end-to-end</strong> and requires no external oracle.</p>
+<hr />
+<h2 id="4-event-types">4. Event Types</h2>
+<h3 id="icp-inception"><code>icp</code> — Inception</h3>
+<p>Creates the AID. Establishes the initial key set and the pre-rotation commitment to the next key set. The AID prefix is derived from this event.</p>
+<h3 id="rot-rotation"><code>rot</code> — Rotation</h3>
+<p>Rotates the key set. Must satisfy the signing threshold of the <em>current</em> key set AND reveal the pre-committed next keys. Establishes a new next-key commitment.</p>
+<h3 id="ixn-interaction"><code>ixn</code> — Interaction</h3>
+<p>A non-establishment event. Signed by the current key set. Used to anchor arbitrary data (credential hashes, service endpoint changes, etc.) into the KEL without rotating keys.</p>
+<h3 id="dip-delegated-inception"><code>dip</code> — Delegated Inception</h3>
+<p>Like <code>icp</code>, but for a <strong>delegated AID</strong>. The delegating AID must anchor a seal of this event in its own KEL, creating a two-way binding.</p>
+<h3 id="drt-delegated-rotation"><code>drt</code> — Delegated Rotation</h3>
+<p>Like <code>rot</code>, but for a delegated AID, requiring the delegator's co-signature.</p>
+<p><strong>AID lifecycle state machine:</strong></p>
+<pre class="mermaid"><code>stateDiagram-v2
+    [*] --&gt; Inception : icp event
+
+    Inception --&gt; Active : Witnesses receipt icp
+
+    Active --&gt; Active : ixn event&lt;br&gt;anchor data, no key change
+
+    Active --&gt; Rotated : rot event&lt;br&gt;new keys revealed&lt;br&gt;new pre-rotation committed
+
+    Rotated --&gt; Active : ixn event&lt;br&gt;using new keys
+
+    Rotated --&gt; Rotated : rot event&lt;br&gt;rotate again
+
+    Active --&gt; Delegating : dip event&lt;br&gt;delegate to child AID
+
+    Delegating --&gt; Active : delegation anchored&lt;br&gt;in delegator KEL
+
+    Active --&gt; [*] : rot with empty next keys&lt;br&gt;deliberate abandonment</code></pre>
+<hr />
+<h2 id="5-key-management-and-rotation">5. Key Management and Rotation</h2>
+<h3 id="thresholds-and-multisig">Thresholds and Multisig</h3>
+<p>KERI natively supports <strong>weighted threshold multisig</strong>. The signing threshold (<code>kt</code>) can be:</p>
+<ul>
+<li>A simple integer: <code>"kt": "2"</code> means 2-of-n</li>
+<li>A fractional weight list: <code>"kt": ["1/2", "1/2", "1/4"]</code> — more flexible M-of-N with weights</li>
+</ul>
+<p>This allows sophisticated key ceremonies: HSM keys, hardware security keys, geographically distributed keys, and organizational key hierarchies.</p>
+<h3 id="key-compromise-recovery">Key Compromise Recovery</h3>
+<p>With pre-rotation, recovery from a compromised current key is straightforward:</p>
+<ol>
+<li>The attacker has the <em>current</em> private key but not the <em>next</em> private key (which was never exposed).</li>
+<li>The controller uses the next key (whose digest was pre-committed) to sign a rotation event.</li>
+<li>The KEL is updated. The attacker's key is revoked.</li>
+<li>The controller commits to a new next key.</li>
+</ol>
+<p><strong>Pre-rotation security: attacker cannot forge a rotation</strong></p>
+<pre class="mermaid"><code>sequenceDiagram
+    participant C as Controller
+    participant W as Witness Network
+    participant A as Attacker
+
+    Note over C: Inception
+    C-&gt;&gt;W: icp event, k=[pub0], n=[H(next0)]
+    Note over W: Receipts issued
+
+    Note over A: Attacker compromises priv0
+    A--&gt;&gt;W: Tries to rotate (does not know next0)
+    Note over W: REJECTED - cannot satisfy pre-rotation commitment
+
+    Note over C: Legitimate rotation
+    C-&gt;&gt;W: rot event, k=[next0] revealed, n=[H(next1)], signed by priv_next0
+    Note over W: Valid - next0 matches H(next0). Receipts issued.
+
+    Note over A: Has priv0 but next0 already rotated away
+    A--&gt;&gt;W: Stale key - too late</code></pre>
+<p>If <em>both</em> the current key and the next key are compromised simultaneously, recovery requires falling back to the <strong>witness network</strong> and potentially a social recovery process — KERI acknowledges this as a residual risk.</p>
+<h3 id="partial-rotation">Partial Rotation</h3>
+<p>KERI supports partial rotation: not all keys in a multisig set need to rotate simultaneously. This enables rolling key ceremonies without requiring all signers to be online at once.</p>
+<hr />
+<h2 id="6-witnesses-and-watchers">6. Witnesses and Watchers</h2>
+<h3 id="witnesses">Witnesses</h3>
+<p>A <strong>witness</strong> is a service that receives, validates, and receipts key events. Witnesses:</p>
+<ul>
+<li>Maintain a copy of the controller's KEL</li>
+<li>Issue <strong>receipts</strong>: signed acknowledgments that they have seen and validated an event</li>
+<li>Provide availability and consistency guarantees</li>
+</ul>
+<p>The <strong>backer threshold</strong> (<code>bt</code>) specifies how many witness receipts are required before an event is considered sufficiently witnessed. This threshold is established at inception and can be updated at rotation.</p>
+<p>Witnesses do <strong>not</strong> control the identifier — they merely attest to having seen events. Their role is analogous to notaries or timestamping services, but cryptographically stronger.</p>
+<h3 id="watchers">Watchers</h3>
+<p><strong>Watchers</strong> are verifier-side infrastructure. They monitor multiple KELs and detect duplicity (see below). Unlike witnesses (which are chosen by the controller), watchers are chosen by the <strong>verifier</strong>.</p>
+<p>This creates a <strong>two-sided trust model</strong>: controllers choose witnesses, verifiers choose watchers. Neither side can unilaterally subvert the system.</p>
+<pre class="mermaid"><code>flowchart LR
+    subgraph Controller["Controller"]
+        KEL["Key Event Log"]
+    end
+
+    subgraph Witnesses["Witness Pool&lt;br&gt;controller-chosen"]
+        W1["Witness 1"]
+        W2["Witness 2"]
+        W3["Witness 3"]
+    end
+
+    subgraph Verifier["Verifier"]
+        subgraph Watchers["Watcher Pool&lt;br&gt;verifier-chosen"]
+            Wt1["Watcher A"]
+            Wt2["Watcher B"]
+        end
+        V["Verification Logic"]
+    end
+
+    KEL --&gt; W1
+    KEL --&gt; W2
+    KEL --&gt; W3
+
+    W1 --&gt;|"KEL + receipts"| Wt1
+    W2 --&gt;|"KEL + receipts"| Wt1
+    W3 --&gt;|"KEL + receipts"| Wt2
+
+    Wt1 --&gt;|"cross-check"| V
+    Wt2 --&gt;|"cross-check"| V</code></pre>
+<hr />
+<h2 id="7-delegation">7. Delegation</h2>
+<p>KERI supports <strong>cryptographic delegation</strong>: an AID can delegate key management authority to another AID. This is the foundation for building organizational hierarchies and enterprise key management systems.</p>
+<p>A delegation relationship requires:</p>
+<ol>
+<li>The <strong>delegatee</strong> creates a <code>dip</code> (delegated inception) event.</li>
+<li>The <strong>delegator</strong> anchors a seal (hash reference) of the <code>dip</code> in its own KEL via an <code>ixn</code> or <code>rot</code> event.</li>
+<li>Both events must exist and be verifiable for the delegation to be valid.</li>
+</ol>
+<p>This mutual anchoring creates a <strong>bi-directional cryptographic binding</strong>. You cannot forge a delegation without compromising both the delegatee's keys and the delegator's keys simultaneously.</p>
+<pre class="mermaid"><code>sequenceDiagram
+    participant DA as Delegatee
+    participant DR as Delegator
+    participant W as Witness Network
+
+    Note over DA: Step 1 - Delegatee creates dip
+    DA-&gt;&gt;W: dip event, i: delegatee_AID, di: delegator_AID
+
+    Note over DR: Step 2 - Delegator anchors seal
+    DR-&gt;&gt;W: ixn event, a: [seal of dip event]
+
+    Note over W: Both events receipted
+
+    Note over DA,DR: Delegation valid only when BOTH events exist</code></pre>
+<hr />
+<h2 id="8-duplicity-detection-and-the-keri-security-model">8. Duplicity Detection and the KERI Security Model</h2>
+<h3 id="the-duplicity-problem">The Duplicity Problem</h3>
+<p>A malicious controller (or attacker) might try to present <strong>two different versions of a KEL</strong> to different parties. KERI addresses this through the <strong>watcher network</strong> and <strong>First Seen</strong> ordering.</p>
+<pre class="mermaid"><code>flowchart TD
+    C["Controller equivocating"]
+
+    C --&gt;|"KEL version A at sn=3"| W1["Witness 1"]
+    C --&gt;|"KEL version B at sn=3"| W2["Witness 2"]
+
+    W1 --&gt; Watcher
+    W2 --&gt; Watcher
+
+    Watcher{"Watcher: sn=3 conflict!"}
+
+    Watcher --&gt;|"DUPLICITY DETECTED"| Alert["Verifier flagged:&lt;br&gt;AID untrustworthy"]</code></pre>
+<h3 id="duplicity-is-detectable-not-preventable">Duplicity is Detectable, Not Preventable</h3>
+<p>KERI does not claim to <em>prevent</em> duplicity — it claims to make duplicity <strong>detectable and attributable</strong>. Once a controller is caught equivocating, their identifier is effectively poisoned: no rational verifier will trust them.</p>
+<p>This is analogous to Bitcoin's security model for double-spend: the network doesn't prevent you from <em>trying</em>, but it makes the attempt detectable and economically irrational.</p>
+<h3 id="the-keri-security-assumptions">The KERI Security Assumptions</h3>
+<p>KERI's security reduces to two assumptions:</p>
+<ol>
+<li><strong>Cryptographic hardness</strong>: hash functions and digital signatures are secure (standard assumption).</li>
+<li><strong>Witness honesty threshold</strong>: a sufficient number of witnesses are not colluding with an adversary. With a well-chosen diverse witness set, this is a very mild assumption.</li>
+</ol>
+<p>Notably, KERI does <strong>not</strong> assume Byzantine fault tolerance, economic incentives (no token required), or trusted third parties.</p>
+<hr />
+<h2 id="9-trust-hierarchy-without-a-ledger">9. Trust Hierarchy Without a Ledger</h2>
+<p>Traditional PKI requires a root CA. Blockchain DIDs require a canonical ledger state. KERI requires neither.</p>
+<p>Instead, KERI uses a <strong>TERD (Trust Extending Root of Discovery)</strong> approach: Alice gives Bob her AID out-of-band; Bob resolves Alice's KEL from Alice's witnesses; Bob's watcher monitors for duplicity; all subsequent verifications are purely cryptographic.</p>
+<p>The root of trust is <strong>the inception event</strong> and the <strong>key ceremony</strong> that produced it.</p>
+<p><strong>End-to-end trust flow:</strong></p>
+<pre class="mermaid"><code>flowchart LR
+    subgraph Bootstrap["Out-of-Band Bootstrap"]
+        OOB["Alice shares AID&lt;br&gt;with Bob&lt;br&gt;QR / NFC / URL"]
+    end
+
+    subgraph Alice["Alice - Controller"]
+        AKEL["Alice's KEL&lt;br&gt;icp to ixn to rot"]
+        AWit["Alice's Witnesses&lt;br&gt;W1, W2, W3"]
+        AKEL --&gt; AWit
+    end
+
+    subgraph Bob["Bob - Verifier"]
+        BWat["Bob's Watchers"]
+        BVerify["1. Fetch KEL from witnesses&lt;br&gt;2. Validate hash chain&lt;br&gt;3. Check pre-rotation&lt;br&gt;4. Verify all signatures&lt;br&gt;5. No duplicity detected"]
+        TRUST["Trust established&lt;br&gt;purely cryptographically"]
+        BWat --&gt; BVerify --&gt; TRUST
+    end
+
+    OOB --&gt;|"AID prefix"| Bob
+    AWit --&gt;|"KEL + receipts"| BWat</code></pre>
+<hr />
+<h2 id="10-keri-vs-other-did-methods">10. KERI vs Other DID Methods</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>did:key</th>
+<th>did:ethr / did:ion</th>
+<th>did:keri</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Self-certifying</td>
+<td>Yes</td>
+<td>Partial</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Key rotation</td>
+<td>No</td>
+<td>Yes (on-chain)</td>
+<td>Yes (off-chain)</td>
+</tr>
+<tr>
+<td>Pre-rotation</td>
+<td>No</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Ledger dependency</td>
+<td>No</td>
+<td>Yes (hard)</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Censorship resistance</td>
+<td>N/A</td>
+<td>Depends on chain</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Multisig</td>
+<td>No</td>
+<td>Partial</td>
+<td>Yes (native)</td>
+</tr>
+<tr>
+<td>Delegation</td>
+<td>No</td>
+<td>No</td>
+<td>Yes (cryptographic)</td>
+</tr>
+<tr>
+<td>Verifiable offline</td>
+<td>Yes</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Long-term key management</td>
+<td>No</td>
+<td>Partial</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Infrastructure cost</td>
+<td>None</td>
+<td>High (gas)</td>
+<td>Low (witnesses)</td>
+</tr>
+</tbody>
+</table>
+<pre class="mermaid"><code>quadrantChart
+    title Identity Architectures: Decentralization vs Key Management Power
+    x-axis Centralized --&gt; Fully Decentralized
+    y-axis Basic Key Mgmt --&gt; Advanced Key Mgmt
+    quadrant-1 Ideal
+    quadrant-2 Powerful but Centralized
+    quadrant-3 Simple but Limited
+    quadrant-4 Decentralized but Limited
+    Traditional PKI: [0.10, 0.30]
+    did-web: [0.20, 0.25]
+    did-key: [0.85, 0.10]
+    did-ethr: [0.60, 0.50]
+    did-ion: [0.65, 0.55]
+    did-peer: [0.80, 0.20]
+    KERI: [0.88, 0.92]</code></pre>
+<hr />
+<h2 id="11-acdc-authentic-chained-data-containers">11. ACDC: Authentic Chained Data Containers</h2>
+<p>KERI provides the <strong>key management layer</strong>. <strong>ACDC</strong> (Authentic Chained Data Containers) is the <strong>credential layer</strong> built on top.</p>
+<p>An ACDC is a signed, self-describing data container: issued by an AID, issued to an AID, optionally chained to parent credentials, and revocable via a Transaction Event Log (TEL) anchored into the issuer's KEL.</p>
+<p>ACDCs can be public (fully disclosed), private (selectively disclosed via Graduated Disclosure), targeted (to a specific holder), or untargeted (bearer credentials).</p>
+<pre class="mermaid"><code>flowchart TD
+    subgraph KERI["KERI Layer"]
+        AID_I["Issuer AID + KEL"]
+        AID_H["Holder AID + KEL"]
+    end
+
+    subgraph TEL["Transaction Event Log"]
+        ISS["iss — issuance"]
+        REV["rev — revocation"]
+    end
+
+    subgraph ACDC["ACDC Credential"]
+        CRED["Issuer AID&lt;br&gt;Holder AID&lt;br&gt;Claims + Schema&lt;br&gt;SAID&lt;br&gt;Signed by Issuer"]
+    end
+
+    subgraph Verify["Verification"]
+        V1["1. Verify issuer signature vs KEL"]
+        V2["2. Check TEL: revoked?"]
+        V3["3. Verify holder controls AID"]
+        OK["Credential Valid"]
+    end
+
+    AID_I --&gt; CRED
+    AID_I --&gt; TEL
+    CRED --&gt; AID_H
+    CRED --&gt; V1
+    TEL --&gt; V2
+    AID_H --&gt; V3
+    V1 --&gt; OK
+    V2 --&gt; OK
+    V3 --&gt; OK</code></pre>
+<p>The combination of KERI + ACDC provides a complete <strong>verifiable credential ecosystem</strong> without any external registry or token economy.</p>
+<hr />
+<h2 id="12-implementation-landscape">12. Implementation Landscape</h2>
+<h3 id="reference-implementations">Reference Implementations</h3>
+<table>
+<thead>
+<tr>
+<th>Implementation</th>
+<th>Language</th>
+<th>Maintainer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/WebOfTrust/keripy">keripy</a></td>
+<td>Python</td>
+<td>WebOfTrust / GLEIF</td>
+</tr>
+<tr>
+<td><a href="https://github.com/WebOfTrust/keriox">keriox</a></td>
+<td>Rust</td>
+<td>WebOfTrust</td>
+</tr>
+<tr>
+<td><a href="https://github.com/WebOfTrust/signify-ts">signify-ts</a></td>
+<td>TypeScript</td>
+<td>WebOfTrust</td>
+</tr>
+<tr>
+<td><a href="https://github.com/WebOfTrust/cesr-one">cesr-one</a></td>
+<td>Python</td>
+<td>WebOfTrust</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cesr-composable-event-streaming-representation">CESR: Composable Event Streaming Representation</h3>
+<p>All KERI events are encoded in <strong>CESR</strong> (Composable Event Streaming Representation), a novel encoding designed by Sam Smith that is self-framing, both text-mode (Base64url) and binary-mode compatible, and composable. CESR replaces the need for DER/ASN.1, CBOR, or JSON-LD in the core protocol layer.</p>
+<h3 id="gleif-and-vlei">GLEIF and vLEI</h3>
+<p>The <strong>Global Legal Entity Identifier Foundation (GLEIF)</strong> is deploying KERI as the foundation for the <strong>vLEI (verifiable Legal Entity Identifier)</strong> ecosystem — a globally standardized identity credential system for legal entities. This is the most significant real-world deployment of KERI to date.</p>
+<hr />
+<h2 id="13-strengths-and-tradeoffs">13. Strengths and Tradeoffs</h2>
+<h3 id="strengths">Strengths</h3>
+<ul>
+<li><strong>No ledger dependency</strong>: portable, censorship-resistant, zero infrastructure lock-in.</li>
+<li><strong>Pre-rotation</strong>: strongest key compromise recovery of any mainstream identity protocol.</li>
+<li><strong>Cryptographic delegation</strong>: enterprise-grade key hierarchy without central registry.</li>
+<li><strong>End-verifiability</strong>: any party can verify the full history with only the KEL and public keys.</li>
+<li><strong>Quantum resistance path</strong>: can upgrade hash functions and signature schemes via rotation; post-quantum algorithms are supported.</li>
+<li><strong>No token economy</strong>: no gas, no staking, no blockchain fees.</li>
+</ul>
+<h3 id="tradeoffs-and-challenges">Tradeoffs and Challenges</h3>
+<ul>
+<li><strong>Complexity</strong>: KERI's security model, especially duplicity detection and the watcher network, is significantly more complex than simple PKI or did:key.</li>
+<li><strong>Witness infrastructure</strong>: you need a witness network for availability and consistency — this is simpler than a blockchain but is still infrastructure to operate.</li>
+<li><strong>First-seen ordering is probabilistic</strong>: KERI doesn't provide global total ordering (by design), which means subtle equivocation attacks are possible in adversarial settings, though they are detectable.</li>
+<li><strong>Discovery</strong>: there is no single canonical registry for "look up an AID" — discovery is handled by out-of-band means or secondary indexers.</li>
+<li><strong>Ecosystem maturity</strong>: as of 2025, KERI tooling is maturing but not yet as polished as did:web or did:ethr for basic use cases.</li>
+<li><strong>Learning curve</strong>: the mental model (KEL, pre-rotation, witnesses vs watchers, CESR encoding) is unfamiliar to most developers.</li>
+</ul>
+<hr />
+<h2 id="14-quick-reference-glossary">14. Quick Reference Glossary</h2>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>AID</strong></td>
+<td>Autonomic Identifier — a self-certifying identifier derived from key material</td>
+</tr>
+<tr>
+<td><strong>SAID</strong></td>
+<td>Self-Addressing IDentifier — an identifier that is the digest of the data it identifies</td>
+</tr>
+<tr>
+<td><strong>KEL</strong></td>
+<td>Key Event Log — append-only, hash-chained log of all key events for an AID</td>
+</tr>
+<tr>
+<td><strong>KERL</strong></td>
+<td>Key Event Receipt Log — the KEL plus all witness receipts</td>
+</tr>
+<tr>
+<td><strong>icp</strong></td>
+<td>Inception event — creates an AID</td>
+</tr>
+<tr>
+<td><strong>rot</strong></td>
+<td>Rotation event — rotates the key set</td>
+</tr>
+<tr>
+<td><strong>ixn</strong></td>
+<td>Interaction event — anchors data without changing keys</td>
+</tr>
+<tr>
+<td><strong>dip/drt</strong></td>
+<td>Delegated inception/rotation events</td>
+</tr>
+<tr>
+<td><strong>Pre-rotation</strong></td>
+<td>Committing to the next key's digest before it is needed</td>
+</tr>
+<tr>
+<td><strong>Witness</strong></td>
+<td>A service that receipts key events; chosen by the controller</td>
+</tr>
+<tr>
+<td><strong>Watcher</strong></td>
+<td>A service that monitors KELs for duplicity; chosen by the verifier</td>
+</tr>
+<tr>
+<td><strong>CESR</strong></td>
+<td>Composable Event Streaming Representation — KERI's encoding format</td>
+</tr>
+<tr>
+<td><strong>ACDC</strong></td>
+<td>Authentic Chained Data Container — KERI's credential format</td>
+</tr>
+<tr>
+<td><strong>TEL</strong></td>
+<td>Transaction Event Log — anchored log for credential issuance/revocation</td>
+</tr>
+<tr>
+<td><strong>Duplicity</strong></td>
+<td>Presenting conflicting versions of a KEL to different parties</td>
+</tr>
+<tr>
+<td><strong>First Seen</strong></td>
+<td>The ordering in which a witness/watcher first receives an event</td>
+</tr>
+<tr>
+<td><strong>vLEI</strong></td>
+<td>Verifiable Legal Entity Identifier — GLEIF's KERI-based credential system</td>
+</tr>
+<tr>
+<td><strong>TERD</strong></td>
+<td>Trust Extending Root of Discovery — KERI's trust bootstrap model</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="further-reading">Further Reading</h2>
+<ul>
+<li><a href="https://arxiv.org/abs/1907.02143">KERI White Paper</a> — Samuel M. Smith, 2019</li>
+<li><a href="https://github.com/WebOfTrust">WebOfTrust GitHub Organization</a> — reference implementations and specs</li>
+<li><a href="https://keri.one">KERI Docs</a> — community documentation hub</li>
+<li><a href="https://www.gleif.org/en/vlei">GLEIF vLEI Ecosystem</a> — real-world deployment</li>
+<li><a href="https://weboftrust.github.io/ietf-cesr/draft-ssmith-cesr.html">CESR Spec</a> — encoding specification</li>
+<li><a href="https://weboftrust.github.io/ietf-acdc/">ACDC Spec</a> — credential layer specification</li>
+</ul>
+<hr />
+<p><em>Document prepared: February 2026</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../javascripts/mermaid.mjs" type="module"></script>
+      
+    
+  </body>
+</html>
