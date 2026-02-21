@@ -1,8 +1,0 @@
-{
-  "name": "keri-coop-client",
-  "private": true,
-  "dependencies": {
-    "tweetnacl": "^1.0.3",
-    "blakejs": "^1.2.1"
-  }
-}
