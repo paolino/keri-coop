@@ -1,0 +1,31 @@
+package:
+  name: keri-purs
+  dependencies:
+    - prelude
+    - effect
+    - argonaut
+    - argonaut-codecs
+    - arrays
+    - maybe
+    - either
+    - foldable-traversable
+    - tuples
+    - strings
+    - integers
+    - foreign-object
+    - ordered-collections
+    - arraybuffer-types
+    - nullable
+    - identity
+    - newtype
+    - control
+  test:
+    main: Test.Main
+    dependencies:
+      - spec
+      - spec-node
+      - quickcheck
+
+workspace:
+  packageSet:
+    registry: 72.1.0

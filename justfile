@@ -4,90 +4,31 @@ set unstable := true
 default:
     @just --list
 
-# -- Haskell server --
-
-# Build Haskell server
+# Build PureScript library
 build:
-    cabal build all -O0
+    spago build --quiet --strict
 
-# Format all source files
+# Run tests
+test:
+    npm ci --silent && spago test --quiet
+
+# Format sources
 format:
-    #!/usr/bin/env bash
-    set -euo pipefail
-    just format-client
-    hs_files=$(find . -name '*.hs' -not -path './dist-newstyle/*' -not -path './.direnv/*')
-    for i in {1..3}; do
-        fourmolu -i $hs_files
-    done
-    find . -name '*.cabal' -not -path './dist-newstyle/*' | xargs cabal-fmt -i
-    find . -name '*.nix' -not -path './dist-newstyle/*' | xargs nixfmt
+    purs-tidy format-in-place 'src/**/*.purs' 'test/**/*.purs'
+    find . -name '*.nix' -not -path './.spago/*' | xargs nixfmt
 
-# Run Haskell linter
+# Lint sources
 lint:
-    #!/usr/bin/env bash
-    set -euo pipefail
-    just lint-client
-
-# -- PureScript client --
-
-# Build PureScript client (warnings are errors)
-build-client:
-    cd client && spago build --quiet --strict
-
-# Bundle PureScript client for browser
-bundle-client:
-    cd client && npm ci --silent && spago bundle --quiet --strict
-
-# Format PureScript sources
-format-client:
-    cd client && purs-tidy format-in-place 'src/**/*.purs'
-
-# Lint PureScript sources
-lint-client:
-    cd client && purs-tidy check 'src/**/*.purs'
-
-# Run PureScript tests
-test-client:
-    cd client && spago test
-
-# -- Combined --
+    purs-tidy check 'src/**/*.purs' 'test/**/*.purs'
 
 # Full CI pipeline
 ci:
     #!/usr/bin/env bash
     set -euo pipefail
+    just lint
     just build
-    just lint-client
-    just build-client
-    just bundle-client
-
-# Run server serving client bundle
-serve:
-    #!/usr/bin/env bash
-    set -euo pipefail
-    just bundle-client
-    cabal run keri-coop-server -O0 -- --static-dir client/dist
-
-# Build docker image
-docker:
-    #!/usr/bin/env bash
-    set -euo pipefail
-    just bundle-client
-    nix build .#docker-image
-    docker load < result
-
-# -- Docs --
-
-# Serve docs locally
-docs-serve:
-    nix develop github:paolino/dev-assets?dir=mkdocs -c mkdocs serve -f docs/mkdocs.yml
-
-# Build docs
-docs-build:
-    nix develop github:paolino/dev-assets?dir=mkdocs -c mkdocs build -f docs/mkdocs.yml
+    just test
 
 # Clean build artifacts
 clean:
-    #!/usr/bin/env bash
-    cabal clean
-    rm -rf result client/output client/node_modules client/.spago
+    rm -rf output node_modules .spago
