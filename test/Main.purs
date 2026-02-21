@@ -7,6 +7,7 @@ import Test.Keri.CesrSpec as CesrSpec
 import Test.Keri.Cesr.DerivationCodeSpec as DerivationCodeSpec
 import Test.Keri.Cesr.EncodeSpec as EncodeSpec
 import Test.Keri.Cesr.DecodeSpec as DecodeSpec
+import Test.Keri.Cesr.PrimitiveSpec as PrimitiveSpec
 import Test.Keri.Crypto.Blake3Spec as Blake3Spec
 import Test.Keri.Crypto.DigestSpec as DigestSpec
 import Test.Keri.Crypto.Ed25519Spec as Ed25519Spec
@@ -26,6 +27,7 @@ main = runSpecAndExitProcess [ consoleReporter ] do
   DerivationCodeSpec.spec
   EncodeSpec.spec
   DecodeSpec.spec
+  PrimitiveSpec.spec
   Blake3Spec.spec
   DigestSpec.spec
   Ed25519Spec.spec

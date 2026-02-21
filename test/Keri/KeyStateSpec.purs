@@ -7,14 +7,17 @@ import Effect.Class (liftEffect)
 import Keri.Event (Event(..))
 import Keri.Event.Interaction (mkInteraction)
 import Keri.Event.Rotation (mkRotation)
+import Keri.Event.Inception (mkInception)
 import Keri.KeyState
   ( applyEvent
   , initialState
   , stateKeys
+  , stateLastDigest
   , statePrefix
   , stateSequenceNumber
   , stateSigningThreshold
   )
+import Keri.KeyState.Verify (verifySignatures)
 import Keri.KeyState.PreRotation (commitKey)
 import Test.Keri.TestHelper (mkTestInception, mkTestKeyPair)
 import Test.Spec (Spec, describe, it)
@@ -151,3 +154,54 @@ spec = describe "KeyState" do
               stateSequenceNumber ks' `shouldEqual` 1
               stateKeys ks' `shouldEqual` [ nextKeyPair.cesrPubKey ]
         _ → pure unit
+
+    it "receipt does not change state" do
+      { event: icp } ← mkTestInception
+      case icp of
+        Inception d → do
+          let
+            ks = initialState d
+            rct = Receipt
+              { version: "v"
+              , digest: "d"
+              , prefix: d.prefix
+              , sequenceNumber: 0
+              }
+          applyEvent ks rct `shouldEqual` Right ks
+        _ → pure unit
+
+    it "rotation with empty pre-rotation" do
+      kp ← liftEffect mkTestKeyPair
+      let
+        cfg =
+          { keys: [ kp.cesrPubKey ]
+          , signingThreshold: 1
+          , nextKeys: []
+          , nextThreshold: 0
+          , config: []
+          , anchors: []
+          }
+        event = mkInception cfg
+      case event of
+        Inception d → do
+          let
+            ks = initialState d
+            rot = mkRotation
+              { prefix: d.prefix
+              , sequenceNumber: stateSequenceNumber ks + 1
+              , priorDigest: stateLastDigest ks
+              , keys: []
+              , signingThreshold: 0
+              , nextKeys: []
+              , nextThreshold: 0
+              , config: []
+              , anchors: []
+              }
+          case applyEvent ks rot of
+            Left err → shouldEqual "Right" err
+            Right _ → pure unit
+        _ → pure unit
+
+  describe "verifySignatures" do
+    it "threshold zero is always met" do
+      verifySignatures [] 0 "" [] `shouldEqual` true
