@@ -4,7 +4,7 @@ import Prelude hiding (append)
 
 import Data.Either (Either(..), isLeft)
 import Effect.Class (liftEffect)
-import Keri.Event (eventDigest, eventPrefix)
+import Keri.Event (Event(..), eventDigest, eventPrefix)
 import Keri.Event.Interaction (mkInteraction)
 import Keri.Event.Rotation (mkRotation)
 import Keri.Kel (emptyKel)
@@ -25,6 +25,27 @@ spec = describe "Kel" do
       case append emptyKel se of
         Left err → shouldEqual "Right" err
         Right _ → pure unit
+
+    it "rejects event with tampered SAID" do
+      { keyPair, event: icp } ← mkTestInception
+      let se0 = signEvent keyPair icp
+      case append emptyKel se0 of
+        Left err → shouldEqual "Right" err
+        Right kel → do
+          let
+            ixn = mkInteraction
+              { prefix: eventPrefix icp
+              , sequenceNumber: 1
+              , priorDigest: eventDigest icp
+              , anchors: []
+              }
+            tampered = case ixn of
+              Interaction d → Interaction (d { priorDigest = "tampered" })
+              other → other
+            tamperedSe = { event: tampered, signatures: [] }
+          case append kel tamperedSe of
+            Left _ → pure unit
+            Right _ → shouldEqual "Left" "Right"
 
     it "rejects non-inception as first event" do
       { event: icp } ← mkTestInception
