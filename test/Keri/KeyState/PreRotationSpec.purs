@@ -32,6 +32,12 @@ spec = describe "KeyState.PreRotation" do
     it "rejects invalid CESR input" do
       commitKey "not-valid-cesr" `shouldSatisfy` isLeft
 
+    it "is deterministic" do
+      kp ← liftEffect mkTestKeyPair
+      case commitKey kp.cesrPubKey, commitKey kp.cesrPubKey of
+        Right c1, Right c2 → c1 `shouldEqual` c2
+        _, _ → shouldEqual "Right" "Left"
+
   describe "verifyCommitment" do
     it "verifies correct commitment" do
       kp ← liftEffect mkTestKeyPair
