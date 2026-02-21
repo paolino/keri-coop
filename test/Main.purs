@@ -10,6 +10,7 @@ import Test.Keri.Cesr.DecodeSpec as DecodeSpec
 import Test.Keri.Crypto.Blake3Spec as Blake3Spec
 import Test.Keri.Crypto.DigestSpec as DigestSpec
 import Test.Keri.Crypto.Ed25519Spec as Ed25519Spec
+import Test.Keri.Crypto.SAIDSpec as SAIDSpec
 import Test.Keri.Event.InceptionSpec as InceptionSpec
 import Test.Keri.Event.RotationSpec as RotationSpec
 import Test.Keri.Event.InteractionSpec as InteractionSpec
@@ -29,6 +30,7 @@ main = runSpecAndExitProcess [ consoleReporter ] do
   Blake3Spec.spec
   DigestSpec.spec
   Ed25519Spec.spec
+  SAIDSpec.spec
   InceptionSpec.spec
   RotationSpec.spec
   InteractionSpec.spec
